@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #228cdc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
+   <children>
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="87.0" prefHeight="148.0" prefWidth="1200.0" text="WELCOME">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameTextField" layoutX="475.0" layoutY="427.0" prefHeight="47.0" prefWidth="230.0" promptText="Username">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button alignment="CENTER" layoutX="538.0" layoutY="572.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="105.0" text="Login">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutY="334.0" prefHeight="63.0" prefWidth="1200.0" text="Please Enter Your Username and Password To Login">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordField" layoutX="475.0" layoutY="491.0" prefHeight="47.0" prefWidth="230.0" promptText="Password" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="-1.0" layoutY="242.0" prefHeight="55.0" prefWidth="1200.0" textFill="#e50202">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
