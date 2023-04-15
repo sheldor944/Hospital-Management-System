@@ -56,7 +56,7 @@ public class dbConnect {
 //            dbConnect connect = new dbConnect();
 
             statement.executeUpdate("INSERT INTO patient (patientID , firstName,lastName ,symptoms, dateOfBirth , mobile , gender , age ) values ('"+ patient.getId() + "','" + patient.getFirstName() + "','" +patient.getLastName() +"','"+patient.getSymptoms()+"','" +patient.getDateOfBirth()+"','" + patient.getMobile()+"','"  + patient.getGender() +"','"+patient.getAge()+ "');\n");
-            System.out.println("oise ");
+            System.out.println("oise " + patient.getId());
         }
         catch (Exception e ){
                 System.out.println(e);

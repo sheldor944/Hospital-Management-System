@@ -71,7 +71,7 @@ public class AddPatientController extends Controller {
         LocalDate localDate = dateOfBirth.getValue();
         Date date = Date.valueOf(localDate);
 
-        Patient patient = new Patient("",firstName.getText() , lastName.getText() ,date , age ,gender , patientMobile.getText() ,symptomsTextArea.getText()  );
+        Patient patient = new Patient(firstName.getText() , lastName.getText() ,date , age ,gender , patientMobile.getText() ,symptomsTextArea.getText()  );
         db.addPatient(patient);
     }
 

@@ -10,9 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="patientNumber" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddPatientController">
+<AnchorPane fx:id="patientNumber" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #228cdc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddPatientController">
    <children>
-      <TextField fx:id="id" layoutX="105.0" layoutY="106.0" promptText="ID" />
       <TextField fx:id="firstName" layoutX="105.0" layoutY="164.0" promptText="First Name" />
       <TextField fx:id="lastName" layoutX="105.0" layoutY="218.0" promptText="Last Name" />
       <DatePicker fx:id="dateOfBirth" layoutX="105.0" layoutY="272.0" promptText="Date of Birth" />

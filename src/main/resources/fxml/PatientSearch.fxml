@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientSeachController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #228cdc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientSeachController">
    <children>
       <Label layoutX="112.0" layoutY="60.0" text="Search" />
-      <TableView fx:id="patientTableView" layoutX="100.0" layoutY="114.0" prefHeight="474.0" prefWidth="1050.0">
+      <TableView fx:id="patientTableView" layoutX="100.0" layoutY="114.0" prefHeight="474.0" prefWidth="1050.0" style="-fx-background-color: azure;">
         <columns>
-          <TableColumn fx:id="patientIdTableColumn" prefWidth="75.0" text="patientID" />
-          <TableColumn fx:id="firstNameTableColumn" prefWidth="75.0" text="firstName" />
-            <TableColumn fx:id="lastNameTableColumn" prefWidth="75.0" text="lastName" />
-            <TableColumn fx:id="dateOfBirthTableColumn" prefWidth="119.14865112304688" text="dateOfBirth" />
-            <TableColumn fx:id="ageTableColumn" prefWidth="30.851409912109375" text="age" />
-            <TableColumn fx:id="genderTableColumn" prefWidth="120.78372192382812" text="gender" />
-            <TableColumn fx:id="moileNumberTableColumn" prefWidth="147.21630859375" text="MobileNumber" />
-            <TableColumn fx:id="symptomsTableColumn" prefWidth="401.270263671875" text="symptoms" />
+          <TableColumn fx:id="patientIdTableColumn" prefWidth="163.0" text="patientID" />
+          <TableColumn fx:id="firstNameTableColumn" prefWidth="78.0" text="firstName" />
+            <TableColumn fx:id="lastNameTableColumn" prefWidth="87.0" text="lastName" />
+            <TableColumn fx:id="dateOfBirthTableColumn" prefWidth="88.0" text="dateOfBirth" />
+            <TableColumn fx:id="ageTableColumn" prefWidth="88.0" text="age" />
+            <TableColumn fx:id="genderTableColumn" prefWidth="133.0" text="gender" />
+            <TableColumn fx:id="moileNumberTableColumn" prefWidth="152.0" text="MobileNumber" />
+            <TableColumn fx:id="symptomsTableColumn" prefWidth="258.0" text="symptoms" />
         </columns>
       </TableView>
-      <TextField fx:id="searchBarTextField" layoutX="227.0" layoutY="56.0" prefHeight="25.0" prefWidth="866.0" />
+      <TextField fx:id="searchBarTextField" layoutX="227.0" layoutY="56.0" prefHeight="25.0" prefWidth="866.0" style="-fx-background-color: azure;" />
+      <Button layoutX="1205.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnToPatientPage" text="Return" />
    </children>
 </Pane>

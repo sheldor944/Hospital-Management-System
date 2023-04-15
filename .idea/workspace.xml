@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="070e0bdf-1094-4527-aed7-786dde2662d5" name="Changes" comment="" />
+    <list default="true" id="070e0bdf-1094-4527-aed7-786dde2662d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DoctorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DoctorSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DoctorSearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PatientSeachController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/PatientSeachController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnectDoctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnectDoctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnectPatient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnectPatient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AddDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AddDoctor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Doctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Doctor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/DoctorSearch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/DoctorSearch.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Patient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Patient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PatientSearch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PatientSearch.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/addPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/addPatient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/loginPage.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

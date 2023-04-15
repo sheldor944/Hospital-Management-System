@@ -1,16 +1,24 @@
 package controllers;
 
+import database.dbConnectDoctor;
 import datamodel.Doctor;
 import datamodel.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,32 +46,18 @@ public class DoctorSearchController implements Initializable {
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
+    private Parent root ;
+    private Stage stage ;
+    private Scene scene ;
 
     ObservableList<Doctor> doctorObservableList = FXCollections.observableArrayList() ;
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle)
     {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/acme", "root", "");
-            statement = connection.createStatement();
-        }
-        catch (Exception e )
-        {
-            System.out.println(e);
-        }
-
         try{
-            resultSet = statement.executeQuery("Select * From doctor;");
-            while(resultSet.next())
-            {
-                String name = resultSet.getString("name");
-                String description = resultSet.getString("description");
-                String id = resultSet.getString("id");
-                String department = resultSet.getString("department");
+            dbConnectDoctor dbDoctor = new dbConnectDoctor() ;
+            doctorObservableList =  dbDoctor.getObservableList(doctorObservableList) ;
 
-                doctorObservableList.add(new Doctor(id , name , name , new Date() , 33,"mael" , "dibo na "  , new Date() , "" , department , description));
-            }
             idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
             nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
             departmentTableColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
@@ -110,5 +104,12 @@ public class DoctorSearchController implements Initializable {
             System.out.println(e);
         }
 
+    }
+    @FXML
+    void returnToDoctorPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/fxml/Doctor.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

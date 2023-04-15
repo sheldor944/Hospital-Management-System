@@ -34,8 +34,11 @@ public class DoctorController extends Controller {
 //    }
 
 
-    public void  searchDoctor(ActionEvent event) {
-
+    public void  searchDoctor(ActionEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("/fxml/DoctorSearch.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

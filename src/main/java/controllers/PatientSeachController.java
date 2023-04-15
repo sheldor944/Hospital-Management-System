@@ -1,19 +1,27 @@
 package controllers;
 
+import database.dbConnectPatient;
 import datamodel.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 //import java.lang.foreign.MemoryLayout;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -44,36 +52,20 @@ public class PatientSeachController implements Initializable {
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
+    private Parent root ;
+    private Stage stage ;
+    private Scene scene ;
+
 
     ObservableList<Patient> patientObservableList = FXCollections.observableArrayList() ;
 
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle)
     {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/acme", "root", "");
-            statement = connection.createStatement();
-        }
-        catch (Exception e )
-        {
-            System.out.println(e);
-        }
-
         try{
-            resultSet = statement.executeQuery("select patientId , firstName , lastName , dateOfBirth , age , gender , mobile , symptoms from patient;");
-            while(resultSet.next()){
-                String patientID = resultSet.getString("patientId") ;
-                String firstName = resultSet.getString("firstName") ;
-                String lastName = resultSet.getString("lastName") ;
-                Date dateOfBirth = resultSet.getDate("dateOfBirth");
-                Integer age = resultSet.getInt("age");
-                String gender = resultSet.getString("gender") ;
-                String mobile = resultSet.getString("mobile") ;
-                String sympotms = resultSet.getString("symptoms");
+            dbConnectPatient dbPatient = new dbConnectPatient() ;
+            patientObservableList = dbPatient.getObservableList(patientObservableList) ;
 
-                patientObservableList.add(new Patient(patientID , firstName , lastName , dateOfBirth , age , gender , mobile , sympotms));
-            }
             patientIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
             firstNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
             lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -134,6 +126,13 @@ public class PatientSeachController implements Initializable {
         {
             System.out.println(e);
         }
+    }
+    @FXML
+    void returnToPatientPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/fxml/Patient.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }
