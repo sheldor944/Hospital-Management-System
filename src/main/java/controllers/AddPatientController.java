@@ -51,10 +51,18 @@ public class AddPatientController extends Controller {
     @FXML
     private TextField patientMobile ;
 
+    Patient patient ;
+
 
     @FXML
-    void createNewPatient(ActionEvent event) {
+    void createNewPatient(ActionEvent event) throws  IOException{
 
+        if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || dateOfBirth.getValue() == null ||
+                patientAge.getText().isEmpty() || patientMobile.getText().isEmpty() || Gender.getSelectedToggle() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all required fields.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
         dbConnect db = new dbConnect();
         String gender ;
         if(rMaleButton.isSelected()){
@@ -71,8 +79,22 @@ public class AddPatientController extends Controller {
         LocalDate localDate = dateOfBirth.getValue();
         Date date = Date.valueOf(localDate);
 
-        Patient patient = new Patient(firstName.getText() , lastName.getText() ,date , age ,gender , patientMobile.getText() ,symptomsTextArea.getText()  );
+        patient = new Patient(firstName.getText() , lastName.getText() ,date , age ,gender , patientMobile.getText() ,symptomsTextArea.getText()  );
         db.addPatient(patient);
+
+        goToAppointmentPage(event);
+    }
+    public void goToAppointmentPage(ActionEvent event ) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/NewAppointment.fxml"));
+        root = fxmlLoader.load();
+        addAppointment controller = fxmlLoader.getController();
+        controller.setPatient(patient);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     @FXML

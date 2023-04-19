@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.searchAppointment">
+   <children>
+      <Label layoutX="61.0" layoutY="60.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+      <TextField fx:id="searchBarTextField" layoutX="170.0" layoutY="56.0" prefHeight="25.0" prefWidth="455.0" />
+      <TableView fx:id="appointmentTableView" layoutX="54.0" layoutY="100.0" prefHeight="418.0" prefWidth="846.0">
+        <columns>
+            <TableColumn fx:id="patientIdTableColumn" prefWidth="160.79767608642578" text="patientId" />
+            <TableColumn fx:id="doctorIdTableColumn" prefWidth="92.20231628417969" text="DoctorId" />
+          <TableColumn fx:id="patientNameTableColumn" prefWidth="82.04281616210938" text="patientName" />
+          <TableColumn fx:id="doctorNameTableColumn" prefWidth="136.44293212890625" text="doctorName" />
+            <TableColumn fx:id="timeTableColumn" prefWidth="213.52227783203125" text="Time" />
+            <TableColumn fx:id="departmentTableColumn" prefWidth="161.24334716796875" text="Department" />
+        </columns>
+      </TableView>
+      <DatePicker fx:id="datePicker" layoutX="992.0" layoutY="165.0" onAction="#getSelectedDate" />
+      <ChoiceBox fx:id="timePicker" layoutX="993.0" layoutY="263.0" prefWidth="150.0" />
+      <Label layoutX="946.0" layoutY="267.0" text="Time" />
+      <Button fx:id="confirmButton" layoutX="1015.0" layoutY="468.0" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
+      <ChoiceBox fx:id="departmentPicker" layoutX="995.0" layoutY="218.0" prefWidth="150.0" />
+      <Label layoutX="915.0" layoutY="223.0" text="Department" />
+      <Label layoutX="947.0" layoutY="168.0" text="Date" />
+      <RadioButton fx:id="rButtonEdit" layoutX="982.0" layoutY="91.0" mnemonicParsing="false" onAction="#getDecision" selected="true" text="Edit">
+         <toggleGroup>
+            <ToggleGroup fx:id="editOrDiscard" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rButtonDiscard" layoutX="997.0" layoutY="131.0" mnemonicParsing="false" onAction="#getDecision" text="DIscard" toggleGroup="$editOrDiscard" />
+      <Button layoutX="1189.0" layoutY="31.0" mnemonicParsing="false" onAction="#switchToMenu" text="Return" />
+   </children>
+</AnchorPane>

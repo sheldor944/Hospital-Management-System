@@ -12,12 +12,12 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="doctorButton" layoutX="182.0" layoutY="325.0" mnemonicParsing="false" onAction="#switchToDoctor" prefHeight="230.0" prefWidth="317.0" text="DOCTOR">
+      <Button fx:id="doctorButton" layoutX="91.0" layoutY="330.0" mnemonicParsing="false" onAction="#switchToDoctor" prefHeight="230.0" prefWidth="317.0" text="DOCTOR">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button fx:id="patientButton" layoutX="712.0" layoutY="325.0" mnemonicParsing="false" onAction="#switchToPatient" prefHeight="230.0" prefWidth="317.0" text="PATIENT">
+      <Button fx:id="patientButton" layoutX="466.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchToPatient" prefHeight="230.0" prefWidth="317.0" text="PATIENT">
          <font>
             <Font size="40.0" />
          </font>
@@ -27,5 +27,10 @@
             <Font size="30.0" />
          </font>
       </Label>
+      <Button layoutX="822.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchToAppointment" prefHeight="233.0" prefWidth="293.0" text="Appointment">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

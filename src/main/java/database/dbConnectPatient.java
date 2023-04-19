@@ -45,4 +45,25 @@ public class dbConnectPatient extends dbConnect{
 
         return patientObservableList ;
     }
+    public void updatePatient(Patient patient)
+    {
+        String updateSql = "UPDATE patient SET "
+                + "firstName = '" + patient.getFirstName() + "', "
+                + "lastName = '" + patient.getLastName() + "', "
+                + "symptoms = '" + patient.getSymptoms() + "', "
+                + "dateOfBirth = '" + patient.getDateOfBirth() + "', "
+                + "mobile = '" + patient.getMobile() + "', "
+                + "gender = '" + patient.getGender() + "', "
+                + "age = '" + patient.getAge() + "' "
+                + "WHERE patientID = '" + patient.getId() + "'";
+        System.out.println( updateSql);
+        try{
+            statement.executeUpdate(updateSql);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
+    }
 }

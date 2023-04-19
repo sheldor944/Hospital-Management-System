@@ -34,4 +34,12 @@ abstract class Controller {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    public void switchToAppointment(ActionEvent event) throws  IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("/fxml/searchAppointment.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }

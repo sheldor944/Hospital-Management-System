@@ -2,6 +2,8 @@ package controllers;
 
 import database.dbConnectPatient;
 import datamodel.Patient;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -121,6 +123,17 @@ public class PatientSeachController implements Initializable {
             SortedList<Patient> sortedList = new SortedList<>(patientFilteredList);
             sortedList.comparatorProperty().bind(patientTableView.comparatorProperty());
             patientTableView.setItems(sortedList);
+
+            // selected method er jonno nicher code
+            patientTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Patient>() {
+                @Override
+                public void changed(ObservableValue<? extends Patient> observableValue, Patient patient, Patient t1) {
+                    int rowIndex = ( (patientTableView.getSelectionModel().getSelectedIndex()));
+                    Patient selectedPatient = patientTableView.getItems().get(rowIndex);
+                    System.out.println(selectedPatient.getFirstName());
+                }
+            });
+
         }
         catch(Exception e )
         {
