@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #076EFB;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
+   <children>
+      <Button alignment="CENTER" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#logout" prefHeight="64.0" prefWidth="153.0" text="Logout">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="doctorButton" layoutX="91.0" layoutY="330.0" mnemonicParsing="false" onAction="#switchToDoctor" prefHeight="230.0" prefWidth="317.0" text="DOCTOR">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
+      <Button fx:id="patientButton" layoutX="466.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchToPatient" prefHeight="230.0" prefWidth="317.0" text="PATIENT">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
+      <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="371.0" layoutY="135.0" prefHeight="114.0" prefWidth="459.0" text="WELCOME">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="822.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchToAppointment" prefHeight="233.0" prefWidth="293.0" text="Appointment">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
