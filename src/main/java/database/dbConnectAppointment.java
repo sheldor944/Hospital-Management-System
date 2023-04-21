@@ -5,8 +5,12 @@ import datamodel.appointmentModel;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class dbConnectAppointment extends  dbConnect {
     public void addAppointmentToDB(Appointment appointment){
@@ -17,6 +21,7 @@ public class dbConnectAppointment extends  dbConnect {
                     + "("
                     + "'" + appointment.getDoctorID() + "', "
                     + "'" + appointment.getPatientID() + "', "
+                    + "'" + appointment.getDate() + "', "
                     + "'" + appointment.getTime() + "', "
                     + "'" + appointment.getDepartment() + "'"
                     + ")"
@@ -28,6 +33,52 @@ public class dbConnectAppointment extends  dbConnect {
             close();
         }
     }
+
+    public ArrayList<LocalTime> getAllTimes() {
+        ArrayList<LocalTime> times = new ArrayList<>();
+        LocalTime time = LocalTime.NOON;
+
+        while (time.isBefore(LocalTime.of(18, 0))) {
+            times.add(time);
+            time = time.plusMinutes(20);
+        }
+
+        return times;
+    }
+    public boolean searchAppointment(Appointment appointment){
+        boolean found = false;
+        try {
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM APPOINTMENT WHERE "
+                    + "DOCTOR_ID = '" + appointment.getDoctorID() + "' AND "
+                    + "PATIENT_ID = '" + appointment.getPatientID() + "' AND "
+                    + "DATE = '" + appointment.getDate() + "' AND "
+                    + "TIME = '" + appointment.getTime() + "' AND "
+                    + "DEPARTMENT = '" + appointment.getDepartment() + "'"
+            );
+
+            while(resultSet.next()){
+                found = true;
+                break;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return found;
+    }
+
+//    public ArrayList <LocalTime> getAvailableTimes(int doctorID, String department, LocalDate localDate){
+//        ArrayList <LocalTime> availableTimes = getAllTimes();
+//
+//        for(LocalTime localTime : availableTimes) {
+//            Date date = toDate(localDate, localTime);
+//
+//        }
+//
+//        return availableTimes;
+//    }
 
     public ArrayList<Timestamp> searchForAppointment(Date date , String department , ArrayList<Timestamp> time )
     {

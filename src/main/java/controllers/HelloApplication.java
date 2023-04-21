@@ -14,20 +14,33 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            new dbConnectAppointment().addAppointmentToDB(
+//            new dbConnectAppointment().addAppointmentToDB(
+//                    new Appointment(
+//                            1,
+//                            2,
+//                            LocalDate.parse("2023-04-22"),
+//                            LocalTime.parse("12:30:00"),
+//                            "Gynae"
+//                    )
+//            );
+
+            System.out.println(new dbConnectAppointment().searchAppointment(
                     new Appointment(
                             1,
-                            2,
-                            new Date(),
+                            3,
+                            LocalDate.parse("2023-04-22"),
+                            LocalTime.parse("12:30:00"),
                             "Gynae"
                     )
-            );
+            ));
 //            System.out.println(new dbConnectPatient().getPatientCount());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/loginPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
