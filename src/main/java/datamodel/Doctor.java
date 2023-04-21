@@ -16,12 +16,12 @@ public class Doctor extends Employee{
         this.description = description ;
         this.patients = new ArrayList<>();
     }
-    public Doctor(String firstName, String lastName, Date dateOfBirth, Integer age, String gender, String mobile, Date joiningDate, String post, String department ,String description) {
-        super( firstName, lastName, dateOfBirth, age, gender, mobile, joiningDate, post);
-        this.department = department;
-        this.description = description ;
-        this.patients = new ArrayList<>();
-    }
+//    public Doctor(String firstName, String lastName, Date dateOfBirth, Integer age, String gender, String mobile, Date joiningDate, String post, String department ,String description) {
+//        super( firstName, lastName, dateOfBirth, age, gender, mobile, joiningDate, post);
+//        this.department = department;
+//        this.description = description ;
+//        this.patients = new ArrayList<>();
+//    }
 
     public String getDescription(){ return  description ; }
     public String getDepartment() {

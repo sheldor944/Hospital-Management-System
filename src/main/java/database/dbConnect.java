@@ -31,25 +31,55 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 public class dbConnect {
-
-
-
-    private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
+    private static final String dbLink = "jdbc:sqlite:src/main/resources/database/database.db";
+    protected Connection connection;
+    protected Statement statement;
+    protected ResultSet resultSet;
     private int flag = 0;
     private int id;
 
     public dbConnect(){
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/acme","root","");
-            statement = connection.createStatement();
-            System.out.println("kitare bala ni ");
+            connection.isValid(3500);
+        } catch (Exception e) {
+            try {
+                connection = DriverManager.getConnection(dbLink);
+                statement = connection.createStatement();
+                System.out.println("Database connected successfully");
 
+//                testDatabase();
+            } catch (SQLException ex) {
+                System.out.println("Could not create connection with link " + dbLink);
+                ex.printStackTrace();
+                System.exit(1);
+            }
         }
-        catch (Exception e) {
+    }
+
+    protected void close() {
+        try {
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
             System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    private void testDatabase(){
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PATIENT");
+            int found = 0;
+            while(resultSet.next()){
+                found = 1;
+                break;
+            }
+            if(found != 0) System.out.println("At least one record is present");
+            else System.out.println("No such record is present.");
+        } catch (SQLException e) {
+            System.out.println("Could not get the stuff");
+            System.exit(1);
         }
     }
     public void addPatient(Patient patient)
