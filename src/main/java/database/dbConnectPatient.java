@@ -6,9 +6,64 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 
 public class dbConnectPatient extends dbConnect{
-    private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
+    public void addPatientToDB(Patient patient)
+    {
+        try {
+            statement.executeUpdate(
+                    "INSERT INTO PATIENT "
+                        + "VALUES"
+                        + "("
+                        + "'" + patient.getId() + "', "
+                        + "'" + patient.getFirstName() + "', "
+                        + "'" + patient.getLastName() + "', "
+                        + "'" + patient.getDateOfBirth() + "', "
+                        + "'" + patient.getAge() + "', "
+                        + "'" + patient.getGender() + "', "
+                        + "'" + patient.getMobile() + "', "
+                        + "'" + patient.getSymptoms() + "', "
+                        + "'" + patient.getAssignedDoctorID() + "'"
+                        + ")"
+            );
+        }
+        catch (Exception e ){
+            System.out.println(e);
+        } finally {
+            close();
+        }
+    }
+
+    public void increasePatientCount(){
+        try {
+            statement.executeUpdate(
+                    "UPDATE STATISTICS "
+                            + "SET COUNT = COUNT + 1 "
+                            + "WHERE NAME = 'PATIENT_COUNT'"
+            );
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.exit(1);
+        } finally {
+            close();
+        }
+    }
+
+    public int getPatientCount(){
+        int patientCount = -1;
+        try {
+            resultSet = statement.executeQuery(
+                    "SELECT COUNT FROM STATISTICS WHERE NAME = 'PATIENT_COUNT'"
+            );
+            while(resultSet.next()){
+                patientCount = resultSet.getInt("COUNT");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.exit(1);
+        } finally {
+            close();
+        }
+        return patientCount;
+    }
 
     public ObservableList getObservableList(ObservableList patientObservableList)
     {

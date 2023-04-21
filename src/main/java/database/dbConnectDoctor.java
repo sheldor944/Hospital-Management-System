@@ -12,7 +12,7 @@ public class dbConnectDoctor extends dbConnect{
     public void addDoctorToDB(Doctor doctor)
     {
         try{
-            statement.executeQuery(
+            statement.executeUpdate(
                 "INSERT INTO DOCTOR "
                 + "VALUES"
                 + "("
@@ -80,15 +80,6 @@ public class dbConnectDoctor extends dbConnect{
 
     public ObservableList<Doctor> getObservableList(ObservableList doctorObservableList)
     {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/acme", "root", "");
-            statement = connection.createStatement();
-        }
-        catch (Exception e )
-        {
-            System.out.println(e);
-        }
         try{
             resultSet = statement.executeQuery("Select * From doctor;");
             while(resultSet.next())

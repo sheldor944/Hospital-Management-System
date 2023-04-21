@@ -32,9 +32,9 @@ import java.time.LocalDate;
 
 public class dbConnect {
     private static final String dbLink = "jdbc:sqlite:src/main/resources/database/database.db";
-    protected Connection connection;
-    protected Statement statement;
-    protected ResultSet resultSet;
+    protected Connection connection = null;
+    protected Statement statement = null;
+    protected ResultSet resultSet = null;
     private int flag = 0;
     private int id;
 
@@ -58,8 +58,9 @@ public class dbConnect {
 
     protected void close() {
         try {
-            statement.close();
-            connection.close();
+            if(resultSet != null) resultSet.close();
+            if(statement != null) statement.close();
+            if(connection != null) connection.close();
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
