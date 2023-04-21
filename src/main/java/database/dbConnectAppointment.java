@@ -1,5 +1,6 @@
 package database;
 
+import datamodel.Appointment;
 import datamodel.appointmentModel;
 import javafx.collections.ObservableList;
 
@@ -8,21 +9,23 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class dbConnectAppointment extends  dbConnect {
-    private ResultSet resultSet ;
-    private Connection connection ;
-    private Statement statement ;
-    public dbConnectAppointment()
-    {
-
-//        super();
+    public void addAppointmentToDB(Appointment appointment){
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/acme", "root", "");
-            statement = connection.createStatement();
+            statement.executeUpdate(
+                    "INSERT INTO APPOINTMENT "
+                    + "VALUES"
+                    + "("
+                    + "'" + appointment.getDoctorID() + "', "
+                    + "'" + appointment.getPatientID() + "', "
+                    + "'" + appointment.getTime() + "', "
+                    + "'" + appointment.getDepartment() + "'"
+                    + ")"
+            );
         }
-        catch (Exception e)
-        {
+        catch (Exception e ){
             System.out.println(e);
+        } finally {
+            close();
         }
     }
 

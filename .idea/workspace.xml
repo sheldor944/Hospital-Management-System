@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e9a20b7-5cf3-469d-9cd2-ebae4e15934b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/datamodel/Appointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnectDoctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnectDoctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnectAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnectAppointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnectPatient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnectPatient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datamodel/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datamodel/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database/database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +18,13 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,6 +44,9 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2OhxBdExnYoojtQuc8fAonlok9F" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

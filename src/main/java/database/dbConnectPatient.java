@@ -11,18 +11,18 @@ public class dbConnectPatient extends dbConnect{
         try {
             statement.executeUpdate(
                     "INSERT INTO PATIENT "
-                        + "VALUES"
-                        + "("
-                        + "'" + patient.getId() + "', "
-                        + "'" + patient.getFirstName() + "', "
-                        + "'" + patient.getLastName() + "', "
-                        + "'" + patient.getDateOfBirth() + "', "
-                        + "'" + patient.getAge() + "', "
-                        + "'" + patient.getGender() + "', "
-                        + "'" + patient.getMobile() + "', "
-                        + "'" + patient.getSymptoms() + "', "
-                        + "'" + patient.getAssignedDoctorID() + "'"
-                        + ")"
+                    + "VALUES"
+                    + "("
+                    + "'" + patient.getId() + "', "
+                    + "'" + patient.getFirstName() + "', "
+                    + "'" + patient.getLastName() + "', "
+                    + "'" + patient.getDateOfBirth() + "', "
+                    + "'" + patient.getAge() + "', "
+                    + "'" + patient.getGender() + "', "
+                    + "'" + patient.getMobile() + "', "
+                    + "'" + patient.getSymptoms() + "', "
+                    + "'" + patient.getAssignedDoctorID() + "'"
+                    + ")"
             );
         }
         catch (Exception e ){
