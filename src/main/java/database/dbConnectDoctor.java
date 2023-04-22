@@ -1,10 +1,13 @@
 package database;
 
 import datamodel.Doctor;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 
+import java.io.StringWriter;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class dbConnectDoctor extends dbConnect{
@@ -76,6 +79,34 @@ public class dbConnectDoctor extends dbConnect{
             close();
         }
         return doctorCount;
+    }
+
+    public ObservableList <String> getDoctorByDepartment(String department){
+        ArrayList <String> arrayList = new ArrayList<>();
+        try {
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM DOCTOR WHERE "
+                    + "DEPARTMENT = " + "'" + department + "'"
+            );
+
+            while(resultSet.next()){
+                int id = resultSet.getInt("ID");
+                String name =
+                        resultSet.getString("FIRST_NAME")
+                        + " "
+                        + resultSet.getString("LAST_NAME");
+                System.out.println(id + " " + name);
+                arrayList.add(id + " " + name);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        } finally {
+            close();
+        }
+
+        return FXCollections.observableArrayList(arrayList);
     }
 
     public ObservableList<Doctor> getObservableList(ObservableList doctorObservableList)

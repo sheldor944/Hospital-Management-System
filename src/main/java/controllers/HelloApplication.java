@@ -8,6 +8,7 @@ import datamodel.Appointment;
 import datamodel.Doctor;
 import datamodel.Patient;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -32,15 +33,15 @@ public class HelloApplication extends Application {
 //                    )
 //            );
 
-            System.out.println(new dbConnectAppointment().searchAppointment(
-                    new Appointment(
-                            1,
-                            3,
-                            LocalDate.parse("2023-04-22"),
-                            LocalTime.parse("12:30:00"),
-                            "Gynae"
-                    )
-            ));
+//            System.out.println(new dbConnectAppointment().searchAppointment(
+//                    new Appointment(
+//                            1,
+//                            3,
+//                            LocalDate.parse("2023-04-22"),
+//                            LocalTime.parse("12:30:00"),
+//                            "Gynae"
+//                    )
+//            ));
 //            System.out.println(new dbConnectPatient().getPatientCount());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/loginPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load());

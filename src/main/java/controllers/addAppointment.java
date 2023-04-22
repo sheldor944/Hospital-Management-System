@@ -19,6 +19,8 @@ public class addAppointment implements Initializable {
     @FXML
     private ChoiceBox<String> departmentPicker ;
     @FXML
+    private ChoiceBox<?> doctorChoiceBox;
+    @FXML
     private DatePicker datePicker ;
     private  Timestamp appointmentDate ;
     @FXML

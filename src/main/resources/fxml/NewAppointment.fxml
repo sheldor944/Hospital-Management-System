@@ -29,5 +29,7 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="doctorChoiceBox" layoutX="546.0" layoutY="209.0" prefWidth="150.0" />
+      <Label layoutX="483.0" layoutY="213.0" text="Doctor" />
    </children>
 </AnchorPane>
