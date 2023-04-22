@@ -56,7 +56,7 @@ public class dbConnect {
         }
     }
 
-    protected void close() {
+    public void close() {
         try {
             if(resultSet != null) resultSet.close();
             if(statement != null) statement.close();

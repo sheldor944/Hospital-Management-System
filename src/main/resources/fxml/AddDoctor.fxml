@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #076EFB;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddDoctorController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddDoctorController">
    <children>
-      <Label layoutX="69.0" layoutY="96.0" text="Name">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="77.0" layoutY="173.0" text="Description">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="doctorName" layoutX="200.0" layoutY="95.0" />
-      <TextArea fx:id="doctorDescription" layoutX="203.0" layoutY="186.0" prefHeight="83.0" prefWidth="200.0" />
-      <Button layoutX="1158.0" layoutY="45.0" mnemonicParsing="false" onAction="#switchToDoctor" text="Return" />
-      <Button layoutX="276.0" layoutY="422.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
-      <Label layoutX="62.0" layoutY="343.0" text="Department">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="doctorDepartment" layoutX="184.0" layoutY="342.0" />
+      <Label layoutX="71.0" layoutY="99.0" text="First Name" />
+      <Label layoutX="530.0" layoutY="195.0" text="Description" />
+      <TextField fx:id="firstNameField" layoutX="175.0" layoutY="95.0" />
+      <TextArea fx:id="descriptionField" layoutX="674.0" layoutY="203.0" prefHeight="256.0" prefWidth="405.0" />
+      <Button layoutX="1156.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToDoctor" prefHeight="43.0" prefWidth="97.0" text="Return" />
+      <Button layoutX="228.0" layoutY="580.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+      <Label layoutX="528.0" layoutY="89.0" text="Department" />
+      <TextField fx:id="lastNameField" layoutX="175.0" layoutY="147.0" />
+      <DatePicker fx:id="dateOfBirthPicker" layoutX="175.0" layoutY="199.0" />
+      <TextField fx:id="ageField" layoutX="175.0" layoutY="259.0" />
+      <TextField fx:id="genderField" layoutX="175.0" layoutY="315.0" />
+      <TextField fx:id="mobileField" layoutX="175.0" layoutY="378.0" />
+      <DatePicker fx:id="joiningDatePicker" layoutX="175.0" layoutY="435.0" />
+      <Label layoutX="71.0" layoutY="151.0" text="Last Name" />
+      <Label layoutX="71.0" layoutY="203.0" text="Date of Birth" />
+      <Label layoutX="76.0" layoutY="263.0" text="Age" />
+      <Label layoutX="71.0" layoutY="319.0" text="Gender" />
+      <Label layoutX="68.0" layoutY="370.0" text="Mobile" />
+      <Label layoutX="71.0" layoutY="439.0" text="Joining Date" />
+      <Label layoutX="71.0" layoutY="501.0" text="Post" />
+      <TextField fx:id="postField" layoutX="175.0" layoutY="497.0" />
+      <ChoiceBox fx:id="departmentPicker" layoutX="674.0" layoutY="87.0" prefWidth="150.0" />
+      <Label fx:id="errorLabel" layoutX="512.0" layoutY="28.0" textFill="#903838" />
    </children>
 </AnchorPane>

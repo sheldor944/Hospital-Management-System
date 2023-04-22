@@ -1,49 +1,108 @@
 package controllers;
 
-import database.dbConnect;
+import database.dbConnectDoctor;
 import datamodel.Doctor;
+import datamodel.Hospital;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
-import java.io.IOException;
-import java.util.Date;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class AddDoctorController extends  Controller {
+public class AddDoctorController implements Initializable {
+
     @FXML
-    private TextField doctorName ;
+    private Label errorLabel;
     @FXML
-    private TextArea doctorDescription ;
+    private TextField ageField;
+
     @FXML
-    private  TextField doctorDepartment ;
-    public void submit(ActionEvent event )
-    {
-        dbConnect db = new dbConnect() ;
-        String name = doctorName.getText();
-        String description = doctorDescription.getText();
-        String dept = doctorDepartment.getText() ;
-        Date dateOfBirth = new Date();
-        int age =11 ;
-        String gender = "" ;
-        String mobile = "";
-        Date joiningDate = new Date() ;
-        String post = "";
+    private DatePicker dateOfBirthPicker;
 
-//        Doctor doctor = new Doctor( "1", name , name , dateOfBirth , age ,gender , mobile , joiningDate , post , dept , description );
-//        db.addDoctorToDB(doctor);
+    @FXML
+    private ChoiceBox<String> departmentPicker;
 
+    @FXML
+    private TextArea descriptionField;
+
+    @FXML
+    private TextField firstNameField;
+
+    @FXML
+    private TextField genderField;
+
+    @FXML
+    private DatePicker joiningDatePicker;
+
+    @FXML
+    private TextField lastNameField;
+
+    @FXML
+    private TextField mobileField;
+
+    @FXML
+    private TextField postField;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        departmentPicker.getItems().addAll(Hospital.getDepartments());
     }
-    public void returnToDoctorPage(ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("/fxml/Doctor.fxml"));
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+
+    @FXML
+    void submit(ActionEvent event) {
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        LocalDate dateOfBirth = dateOfBirthPicker.getValue();
+        String ageInString = ageField.getText();
+        String gender = genderField.getText();
+        String mobile = mobileField.getText();
+        LocalDate joiningDate = joiningDatePicker.getValue();
+        String post = postField.getText();
+        String department = departmentPicker.getValue();
+        String description = descriptionField.getText();
+
+        if(firstName.isEmpty()
+            || lastName.isEmpty()
+            || dateOfBirth == null
+            || ageInString.isEmpty()
+            || gender.isEmpty()
+            || mobile.isEmpty()
+            || joiningDate == null
+            || post.isEmpty()
+            || department == null
+            || description.isEmpty()){
+            errorLabel.setText("PLEASE FILL UP ALL THE INFORMATION.");
+        }
+        else{
+            int age = Integer.parseInt(ageInString);
+
+            dbConnectDoctor database = new dbConnectDoctor();
+            int id = database.getDoctorCount();
+            database.increaseDoctorCount();
+
+            Doctor doctor = new Doctor(
+                    id,
+                    firstName,
+                    lastName,
+                    dateOfBirth,
+                    age,
+                    gender,
+                    mobile,
+                    joiningDate,
+                    post,
+                    department,
+                    description
+            );
+            database.addDoctorToDB(doctor);
+            database.close();
+        }
+    }
+
+    @FXML
+    void switchToDoctor(ActionEvent event) {
+
     }
 }

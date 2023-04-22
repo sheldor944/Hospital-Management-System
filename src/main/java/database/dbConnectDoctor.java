@@ -39,9 +39,6 @@ public class dbConnectDoctor extends dbConnect{
         {
             System.out.println(e);
         }
-        finally {
-
-        }
     }
 
     public void increaseDoctorCount(){
@@ -54,14 +51,6 @@ public class dbConnectDoctor extends dbConnect{
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);
-        } finally {
-            try {
-                statement.close();
-                connection.close();
-            } catch (SQLException e) {
-                System.out.println(e);
-                System.exit(1);
-            }
         }
     }
 
@@ -77,8 +66,6 @@ public class dbConnectDoctor extends dbConnect{
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);
-        } finally {
-            close();
         }
         return doctorCount;
     }
@@ -104,8 +91,6 @@ public class dbConnectDoctor extends dbConnect{
             System.out.println(e);
             e.printStackTrace();
             System.exit(1);
-        } finally {
-            close();
         }
 
         return FXCollections.observableArrayList(arrayList);
@@ -136,8 +121,6 @@ public class dbConnectDoctor extends dbConnect{
             System.out.println(e);
             e.printStackTrace();
             System.exit(1);
-        } finally {
-            close();
         }
         return FXCollections.observableArrayList(arrayList);
     }
@@ -153,8 +136,6 @@ public class dbConnectDoctor extends dbConnect{
             System.out.println(e);
             e.printStackTrace();
             System.exit(1);
-        } finally {
-            close();
         }
     }
 
