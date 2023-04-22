@@ -23,31 +23,6 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-//            new dbConnectPatient().getAllPatients();
-//            new dbConnectAppointment().getAvailableTimes(
-//                    1,
-//                    LocalDate.of(2023, 04, 23)
-//            );
-//            new dbConnectAppointment().addAppointmentToDB(
-//                    new Appointment(
-//                            1,
-//                            2,
-//                            LocalDate.parse("2023-04-22"),
-//                            LocalTime.parse("12:30:00"),
-//                            "Gynae"
-//                    )
-//            );
-
-//            System.out.println(new dbConnectAppointment().searchAppointment(
-//                    new Appointment(
-//                            1,
-//                            3,
-//                            LocalDate.parse("2023-04-22"),
-//                            LocalTime.parse("12:30:00"),
-//                            "Gynae"
-//                    )
-//            ));
-//            System.out.println(new dbConnectPatient().getPatientCount());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/loginPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("Hospital Management System");

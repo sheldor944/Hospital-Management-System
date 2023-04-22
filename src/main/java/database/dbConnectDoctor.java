@@ -1,12 +1,14 @@
 package database;
 
 import datamodel.Doctor;
+import datamodel.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 
 import java.io.StringWriter;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -107,6 +109,53 @@ public class dbConnectDoctor extends dbConnect{
         }
 
         return FXCollections.observableArrayList(arrayList);
+    }
+
+    public ObservableList <Doctor> getAllDoctors(){
+        ArrayList <Doctor> arrayList = new ArrayList<>();
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM DOCTOR");
+            while(resultSet.next()){
+                Doctor doctor = new Doctor(
+                        resultSet.getInt("ID"),
+                        resultSet.getString("FIRST_NAME"),
+                        resultSet.getString("LAST_NAME"),
+                        LocalDate.parse(resultSet.getString("DATE_OF_BIRTH")),
+                        Integer.parseInt(resultSet.getString("AGE")),
+                        resultSet.getString("GENDER"),
+                        resultSet.getString("MOBILE"),
+                        LocalDate.parse(resultSet.getString("JOINING_DATE")),
+                        resultSet.getString("POST"),
+                        resultSet.getString("DEPARTMENT"),
+                        resultSet.getString("DESCRIPTION")
+                );
+                arrayList.add(doctor);
+                System.out.println(doctor.getFirstName() + " " + doctor.getDateOfBirth());
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        } finally {
+            close();
+        }
+        return FXCollections.observableArrayList(arrayList);
+    }
+
+    public void updateDoctor(int doctorID, Doctor updatedDoctor){
+        try {
+            statement.executeUpdate(
+                    "DELETE FROM DOCTOR WHERE "
+                            + "ID = " + "'" + doctorID + "'"
+            );
+            addDoctorToDB(updatedDoctor);
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        } finally {
+            close();
+        }
     }
 
     public ObservableList<Doctor> getObservableList(ObservableList doctorObservableList)
