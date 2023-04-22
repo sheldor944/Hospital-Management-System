@@ -110,10 +110,10 @@ public class PatientSeachController implements Initializable {
                     {
                         return true ;
                     }
-                    else if (patient.getId().toLowerCase().indexOf(searchKeyword) > -1 )
-                    {
-                        return true ;
-                    }
+//                    else if ((Integer)(patient.getId()).toString().toLowerCase().indexOf(searchKeyword) > -1 )
+//                    {
+//                        return true ;
+//                    }
                     else{
                         return false ;
                     }

@@ -120,7 +120,7 @@ public class dbConnectDoctor extends dbConnect{
                 String id = resultSet.getString("id");
                 String department = resultSet.getString("department");
 
-                doctorObservableList.add(new Doctor(id , name , name , new Date() , 33,"mael" , "dibo na "  , new Date() , "" , department , description));
+//                doctorObservableList.add(new Doctor(id , name , name , new Date() , 33,"mael" , "dibo na "  , new Date() , "" , department , description));
             }
         }
         catch (Exception e)

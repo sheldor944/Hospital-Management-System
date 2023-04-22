@@ -2,19 +2,20 @@ package datamodel;
 
 import javafx.scene.control.DatePicker;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Person {
-    private String id;
+    private int id;
     private String firstName, lastName;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private Integer age;
     private String gender;
     private String mobile;
 
-    public Person(String id, String firstName, String lastName, Date dateOfBirth, Integer age, String gender, String mobile) {
+    public Person(int id, String firstName, String lastName, LocalDate dateOfBirth, Integer age, String gender, String mobile) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,15 +25,15 @@ public class Person {
         this.mobile = mobile;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Person(String firstName, String lastName, Date dateOfBirth, Integer age, String gender, String mobile) {
+    public Person(String firstName, String lastName, LocalDate dateOfBirth, Integer age, String gender, String mobile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -42,7 +43,7 @@ public class Person {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         String continuousNumber = dateTime.format(formatter).replaceAll("\\D", "");
-        id = "pID"+continuousNumber ;
+//        id = "pID"+continuousNumber ;
     }
 
     public String getFirstName() {
@@ -61,11 +62,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

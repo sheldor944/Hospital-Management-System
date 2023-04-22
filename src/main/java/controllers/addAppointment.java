@@ -107,7 +107,7 @@ public class addAppointment implements Initializable {
             System.out.println(getSelectedDate(event));
             System.out.println(timePicker.getValue());
             System.out.println(patient.getId());
-            dbapp.addAppointment(patient.getId() ,"did420 " , selectedDept , timePicker.getValue() , "Ronaldo" , patient.getFirstName());
+//            dbapp.addAppointment(patient.getId() ,"did420 " , selectedDept , timePicker.getValue() , "Ronaldo" , patient.getFirstName());
             System.out.println("submit o click oise ");
         }
     }

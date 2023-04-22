@@ -19,6 +19,12 @@ public class Appointment {
         this.department = department;
     }
 
+    public Appointment(int doctorID, LocalDate date, LocalTime time) {
+        this.doctorID = doctorID;
+        this.date = date;
+        this.time = time;
+    }
+
     public LocalDate getDate() {
         return date;
     }

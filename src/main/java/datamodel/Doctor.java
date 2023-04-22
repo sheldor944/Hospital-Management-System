@@ -2,6 +2,7 @@ package datamodel;
 
 import javafx.scene.control.DatePicker;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ public class Doctor extends Employee{
     private String description ;
     private ArrayList <Patient> patients;
 
-    public Doctor(String id , String firstName, String lastName, Date dateOfBirth, Integer age, String gender, String mobile, Date joiningDate, String post, String department , String description) {
+    public Doctor(int id , String firstName, String lastName, LocalDate dateOfBirth, Integer age, String gender, String mobile, LocalDate joiningDate, String post, String department , String description) {
         super(id ,  firstName, lastName, dateOfBirth, age, gender, mobile, joiningDate, post);
         this.department = department;
         this.description = description ;

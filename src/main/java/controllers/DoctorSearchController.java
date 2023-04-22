@@ -84,10 +84,10 @@ public class DoctorSearchController implements Initializable {
                             {
                                 return  true ;
                             }
-                            if(doctor.getId().toLowerCase().indexOf(searchKeyword) > -1)
-                            {
-                                return  true ;
-                            }
+//                            if(doctor.getId().toLowerCase().indexOf(searchKeyword) > -1)
+//                            {
+//                                return  true ;
+//                            }
                             else{
                                 return  false ;
                             }

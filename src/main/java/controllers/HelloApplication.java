@@ -23,6 +23,11 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
+//            new dbConnectPatient().getAllPatients();
+//            new dbConnectAppointment().getAvailableTimes(
+//                    1,
+//                    LocalDate.of(2023, 04, 23)
+//            );
 //            new dbConnectAppointment().addAppointmentToDB(
 //                    new Appointment(
 //                            1,

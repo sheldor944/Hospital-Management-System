@@ -1,9 +1,12 @@
 package database;
 
 import datamodel.Patient;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class dbConnectPatient extends dbConnect{
     public void addPatientToDB(Patient patient)
@@ -65,17 +68,46 @@ public class dbConnectPatient extends dbConnect{
         return patientCount;
     }
 
+    public ObservableList <Patient> getAllPatients(){
+        ArrayList <Patient> arrayList = new ArrayList<>();
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PATIENT");
+            while(resultSet.next()){
+                arrayList.add(new Patient(
+                        resultSet.getInt("ID"),
+                        resultSet.getString("FIRST_NAME"),
+                        resultSet.getString("LAST_NAME"),
+                        LocalDate.parse(resultSet.getString("DATE_OF_BIRTH")),
+                        Integer.parseInt(resultSet.getString("AGE")),
+                        resultSet.getString("GENDER"),
+                        resultSet.getString("MOBILE"),
+                        resultSet.getString("SYMPTOMS")
+                ));
+
+                Patient patient = new Patient(
+                        resultSet.getInt("ID"),
+                        resultSet.getString("FIRST_NAME"),
+                        resultSet.getString("LAST_NAME"),
+                        LocalDate.parse(resultSet.getString("DATE_OF_BIRTH")),
+                        Integer.parseInt(resultSet.getString("AGE")),
+                        resultSet.getString("GENDER"),
+                        resultSet.getString("MOBILE"),
+                        resultSet.getString("SYMPTOMS")
+                );
+                System.out.println(patient.getFirstName());
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        } finally {
+            close();
+        }
+        return FXCollections.observableArrayList(arrayList);
+    }
+
     public ObservableList getObservableList(ObservableList patientObservableList)
     {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/acme", "root", "");
-            statement = connection.createStatement();
-        }
-        catch (Exception e )
-        {
-            System.out.println(e);
-        }
 
         try{
             resultSet = statement.executeQuery("select patientId , firstName , lastName , dateOfBirth , age , gender , mobile , symptoms from patient;");
@@ -89,7 +121,7 @@ public class dbConnectPatient extends dbConnect{
                 String mobile = resultSet.getString("mobile") ;
                 String sympotms = resultSet.getString("symptoms");
 
-                patientObservableList.add(new Patient(patientID , firstName , lastName , dateOfBirth , age , gender , mobile , sympotms));
+//                patientObservableList.add(new Patient(patientID , firstName , lastName , dateOfBirth , age , gender , mobile , sympotms));
             }
 
         }

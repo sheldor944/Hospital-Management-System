@@ -91,120 +91,120 @@ public class ModifyPatient implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            dbConnectPatient dbPatient = new dbConnectPatient();
-            patientObservableList = dbPatient.getObservableList(patientObservableList);
-
-            patientIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-
-            patientTableView.setItems(patientObservableList);
-
-            FilteredList<Patient> patientFilteredList = new FilteredList<>(patientObservableList , b -> true );
-            searchBarTextField.textProperty().addListener((observable  , oldValue , newValue) -> {
-                patientFilteredList.setPredicate(patient -> {
-                    if(newValue.isEmpty() || newValue.isBlank() || newValue == null ){
-                        return true ;
-                    }
-                    String searchKeyword = newValue.toLowerCase() ;
-                    if(patient.getFirstName().toLowerCase().indexOf(searchKeyword) > -1)
-                    {
-                        return true ;
-                    }
-                    else if (patient.getId().toLowerCase().indexOf(searchKeyword) > -1 )
-                    {
-                        return true ;
-                    }
-                    else{
-                        return false ;
-                    }
-                });
-            });
-
-            SortedList<Patient> sortedList = new SortedList<>(patientFilteredList);
-            sortedList.comparatorProperty().bind(patientTableView.comparatorProperty());
-            patientTableView.setItems(sortedList);
-
-            patientTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                if (newSelection != null) {
-                    patientId = newSelection.getId();
-                    firstNameTextField.setText(newSelection.getFirstName());
-
-                    firstName = newSelection.getFirstName();
-                    lastName = newSelection.getLastName();
-                    age= newSelection.getAge();
-                    mobile =newSelection.getMobile();
-                    symptoms=newSelection.getSymptoms();
-                    DOB = (Date) newSelection.getDateOfBirth();
-                    gender = newSelection.getGender();
-
-                    lastNameTextField.setText(newSelection.getLastName());
-                    mobileTextField.setText(newSelection.getMobile());
-                    symptomsTextArea.setText(newSelection.getSymptoms());
-                    ageTextField.setText(String.valueOf(newSelection.getAge()));
-//                    dateOfBirthPicker.setValue((newSelection.getDateOfBirth().toInstant()
-//                            .atZone(ZoneId.systemDefault())
-//                            .toLocalDate()));
+//            dbConnectPatient dbPatient = new dbConnectPatient();
+//            patientObservableList = dbPatient.getObservableList(patientObservableList);
 //
-                    // do something with the selected item's information
-                    System.out.println(patientId);
-
-                }
-            });
-            // problem is here , patient object is not getting set properly
-            
-            patient = new Patient(patientId ,firstName , lastName , DOB ,age ,  gender , mobile , symptoms );
-            System.out.println(patient.getFirstName() + " ota ");
-            rChange.selectedProperty().addListener((ob, oV, nV) -> {
-                if (nV) {
-                    appointmentDatePicker.setDisable(false);
-
-                    departmentPicker.getItems().addAll(departments);
-                    LocalDate minDate = LocalDate.now();
-                    LocalDate maxDate = minDate.plusDays(5);
-                    appointmentDatePicker.setDayCellFactory(picker -> new DateCell() {
-                        @Override
-                        public void updateItem(LocalDate date, boolean empty) {
-                            super.updateItem(date, empty);
-                            setDisable(date.isBefore(minDate) || date.isAfter(maxDate));
-                        }
-                    });
-                    departmentPicker.setDisable(true); // Disable the departmentPicker initially
-                    timePicker.setDisable(true); // Disable the timePicker initially
-                    appointmentDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->
-                    {
-                        if (newValue != null) {
-                            // If a date is selected, enable the departmentPicker and disable the timePicker
-                            departmentPicker.setDisable(false);
-                            timePicker.setDisable(true);
-                        } else {
-                            // If no date is selected, disable both the departmentPicker and the timePicker
-                            departmentPicker.setDisable(true);
-                            timePicker.setDisable(true);
-                        }
-                    });
-                    departmentPicker.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                    {
-                        if (newValue != null) {
-                            // If a department is selected, enable the timePicker
-                            timePicker.setDisable(false);
-                            selectedDept = newValue;
-                            System.out.println(selectedDate);
-                            times = dbapp.searchForAppointment(selectedDate, newValue, times);
-                            timePicker.getItems().addAll(times);
-                        } else {
-                            // If no department is selected, disable the timePicker
-                            timePicker.setDisable(true);
-                        }
-                    });
-                    System.out.println("Radio button is selected");
-                } else {
-                    departmentPicker.setDisable(true); // Disable the departmentPicker initially
-                    timePicker.setDisable(true); // Disable the timePicker initially
-                    appointmentDatePicker.setDisable(true);
-
-                    System.out.println("Radio button is not selected");
-                }
-            });
+//            patientIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+//
+//            patientTableView.setItems(patientObservableList);
+//
+//            FilteredList<Patient> patientFilteredList = new FilteredList<>(patientObservableList , b -> true );
+//            searchBarTextField.textProperty().addListener((observable  , oldValue , newValue) -> {
+//                patientFilteredList.setPredicate(patient -> {
+//                    if(newValue.isEmpty() || newValue.isBlank() || newValue == null ){
+//                        return true ;
+//                    }
+//                    String searchKeyword = newValue.toLowerCase() ;
+//                    if(patient.getFirstName().toLowerCase().indexOf(searchKeyword) > -1)
+//                    {
+//                        return true ;
+//                    }
+//                    else if (patient.getId().toLowerCase().indexOf(searchKeyword) > -1 )
+//                    {
+//                        return true ;
+//                    }
+//                    else{
+//                        return false ;
+//                    }
+//                });
+//            });
+//
+//            SortedList<Patient> sortedList = new SortedList<>(patientFilteredList);
+//            sortedList.comparatorProperty().bind(patientTableView.comparatorProperty());
+//            patientTableView.setItems(sortedList);
+//
+//            patientTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+//                if (newSelection != null) {
+//                    patientId = newSelection.getId();
+//                    firstNameTextField.setText(newSelection.getFirstName());
+//
+//                    firstName = newSelection.getFirstName();
+//                    lastName = newSelection.getLastName();
+//                    age= newSelection.getAge();
+//                    mobile =newSelection.getMobile();
+//                    symptoms=newSelection.getSymptoms();
+//                    DOB = (Date) newSelection.getDateOfBirth();
+//                    gender = newSelection.getGender();
+//
+//                    lastNameTextField.setText(newSelection.getLastName());
+//                    mobileTextField.setText(newSelection.getMobile());
+//                    symptomsTextArea.setText(newSelection.getSymptoms());
+//                    ageTextField.setText(String.valueOf(newSelection.getAge()));
+////                    dateOfBirthPicker.setValue((newSelection.getDateOfBirth().toInstant()
+////                            .atZone(ZoneId.systemDefault())
+////                            .toLocalDate()));
+////
+//                    // do something with the selected item's information
+//                    System.out.println(patientId);
+//
+//                }
+//            });
+//            // problem is here , patient object is not getting set properly
+//
+//            patient = new Patient(patientId ,firstName , lastName , DOB ,age ,  gender , mobile , symptoms );
+//            System.out.println(patient.getFirstName() + " ota ");
+//            rChange.selectedProperty().addListener((ob, oV, nV) -> {
+//                if (nV) {
+//                    appointmentDatePicker.setDisable(false);
+//
+//                    departmentPicker.getItems().addAll(departments);
+//                    LocalDate minDate = LocalDate.now();
+//                    LocalDate maxDate = minDate.plusDays(5);
+//                    appointmentDatePicker.setDayCellFactory(picker -> new DateCell() {
+//                        @Override
+//                        public void updateItem(LocalDate date, boolean empty) {
+//                            super.updateItem(date, empty);
+//                            setDisable(date.isBefore(minDate) || date.isAfter(maxDate));
+//                        }
+//                    });
+//                    departmentPicker.setDisable(true); // Disable the departmentPicker initially
+//                    timePicker.setDisable(true); // Disable the timePicker initially
+//                    appointmentDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->
+//                    {
+//                        if (newValue != null) {
+//                            // If a date is selected, enable the departmentPicker and disable the timePicker
+//                            departmentPicker.setDisable(false);
+//                            timePicker.setDisable(true);
+//                        } else {
+//                            // If no date is selected, disable both the departmentPicker and the timePicker
+//                            departmentPicker.setDisable(true);
+//                            timePicker.setDisable(true);
+//                        }
+//                    });
+//                    departmentPicker.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+//                    {
+//                        if (newValue != null) {
+//                            // If a department is selected, enable the timePicker
+//                            timePicker.setDisable(false);
+//                            selectedDept = newValue;
+//                            System.out.println(selectedDate);
+//                            times = dbapp.searchForAppointment(selectedDate, newValue, times);
+//                            timePicker.getItems().addAll(times);
+//                        } else {
+//                            // If no department is selected, disable the timePicker
+//                            timePicker.setDisable(true);
+//                        }
+//                    });
+//                    System.out.println("Radio button is selected");
+//                } else {
+//                    departmentPicker.setDisable(true); // Disable the departmentPicker initially
+//                    timePicker.setDisable(true); // Disable the timePicker initially
+//                    appointmentDatePicker.setDisable(true);
+//
+//                    System.out.println("Radio button is not selected");
+//                }
+//            });
 
 //            if( rChange.isSelected() ) {
 //                //Changing appointment

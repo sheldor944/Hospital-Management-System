@@ -35,8 +35,8 @@ public class AddDoctorController extends  Controller {
         Date joiningDate = new Date() ;
         String post = "";
 
-        Doctor doctor = new Doctor( "1", name , name , dateOfBirth , age ,gender , mobile , joiningDate , post , dept , description );
-        db.addDoctorToDB(doctor);
+//        Doctor doctor = new Doctor( "1", name , name , dateOfBirth , age ,gender , mobile , joiningDate , post , dept , description );
+//        db.addDoctorToDB(doctor);
 
     }
     public void returnToDoctorPage(ActionEvent event) throws IOException
