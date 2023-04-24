@@ -1,6 +1,10 @@
 package controllers;
 
+import database.dbConnectAppointment;
+import database.dbConnectDoctor;
 import database.dbConnectPatient;
+import datamodel.Appointment;
+import datamodel.Doctor;
 import datamodel.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +52,15 @@ public class DisplayPatientController extends Controller {
     private TextArea symptomsTextArea;
 
     @FXML
+    private Label doctorLabel;
+
+    @FXML
+    private Label dateLabel;
+
+    @FXML
+    private Label timeLabel;
+
+    @FXML
     private Button modifyButton;
 
     private Patient patient;
@@ -75,6 +88,14 @@ public class DisplayPatientController extends Controller {
 
         patientMobile.setText(patient.getMobile());
         symptomsTextArea.setText(patient.getSymptoms());
+
+        dbConnectAppointment database = new dbConnectAppointment();
+        Appointment appointment = database.getAppointmentByPatientID(patient.getId());
+        Doctor doctor = new dbConnectDoctor().getDoctorByID(appointment.getDoctorID());
+
+        doctorLabel.setText("Assigned Doctor: " + doctor.getFirstName() + " " + doctor.getLastName());
+        dateLabel.setText("Date: " + appointment.getDate());
+        timeLabel.setText("Time: " + appointment.getTime());
     }
 
     private boolean getConfirmation(){

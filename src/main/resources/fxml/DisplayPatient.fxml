@@ -19,11 +19,11 @@
         <Label layoutX="105.0" layoutY="369.0" prefHeight="37.0" prefWidth="171.0" text="Gender:" />
         <RadioButton fx:id="rMaleButton" layoutX="105.0" layoutY="414.0" mnemonicParsing="false" text="Male">
             <toggleGroup>
-                <ToggleGroup fx:id="Gender"/>
+                <ToggleGroup fx:id="Gender" />
             </toggleGroup></RadioButton>
         <RadioButton fx:id="rFemaleButton" layoutX="191.0" layoutY="414.0" mnemonicParsing="false" text="Female" toggleGroup="$Gender" />
         <RadioButton fx:id="rOtherButton" layoutX="294.0" layoutY="414.0" mnemonicParsing="false" text="Other" toggleGroup="$Gender" />
-        <TextField fx:id="patientMobile" layoutX="549.0" layoutY="106.0" promptText="Mobile Number" />
+        <TextField fx:id="patientMobile" layoutX="555.0" layoutY="164.0" promptText="Mobile Number" />
         <Button fx:id="modifyButton" layoutX="102.0" layoutY="529.0" mnemonicParsing="false" onAction="#modifyButtonClicked" prefHeight="79.0" prefWidth="329.0" text="MODIFY">
             <font>
                 <Font size="20.0" />
@@ -34,6 +34,9 @@
                 <Font size="20.0" />
             </font>
         </Button>
-        <TextArea fx:id="symptomsTextArea" layoutX="549.0" layoutY="172.0" prefHeight="200.0" prefWidth="268.0" promptText="Symptoms" />
+        <TextArea fx:id="symptomsTextArea" layoutX="549.0" layoutY="214.0" prefHeight="200.0" prefWidth="268.0" promptText="Symptoms" />
+      <Label fx:id="doctorLabel" layoutX="1006.0" layoutY="168.0" text="Label" />
+      <Label fx:id="timeLabel" layoutX="1006.0" layoutY="288.0" text="Label" />
+      <Label fx:id="dateLabel" layoutX="1006.0" layoutY="234.0" text="Label" />
     </children>
 </AnchorPane>
