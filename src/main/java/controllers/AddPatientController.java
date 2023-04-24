@@ -97,7 +97,7 @@ public class AddPatientController extends Controller {
         database.addPatientToDB(patient);
         database.close();
 
-//        goToAppointmentPage(event);
+        goToAppointmentPage(event);
     }
     public void goToAppointmentPage(ActionEvent event ) throws IOException
     {

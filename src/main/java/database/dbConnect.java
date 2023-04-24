@@ -45,9 +45,6 @@ public class dbConnect {
             try {
                 connection = DriverManager.getConnection(dbLink);
                 statement = connection.createStatement();
-                System.out.println("Database connected successfully");
-
-//                testDatabase();
             } catch (SQLException ex) {
                 System.out.println("Could not create connection with link " + dbLink);
                 ex.printStackTrace();
@@ -67,22 +64,6 @@ public class dbConnect {
             System.exit(1);
         }
     }
-
-    private void testDatabase(){
-        try {
-            resultSet = statement.executeQuery("SELECT * FROM PATIENT");
-            int found = 0;
-            while(resultSet.next()){
-                found = 1;
-                break;
-            }
-            if(found != 0) System.out.println("At least one record is present");
-            else System.out.println("No such record is present.");
-        } catch (SQLException e) {
-            System.out.println("Could not get the stuff");
-            System.exit(1);
-        }
-    }
     public void addPatient(Patient patient)
     {
         try {
@@ -95,18 +76,6 @@ public class dbConnect {
                 System.out.println(e);
         }
     }
-    public void addDoctorToDB(Doctor doctor )
-    {
-        try{
-            statement.executeUpdate("insert into doctor (name , description , department ) values ('" + doctor.getFirstName() +"','" + doctor.getDepartment() +"','" + doctor.getDepartment() +"');\n");
-        }
-        catch (Exception e )
-        {
-            System.out.println(e);
-        }
-    }
-
-
 }
 
 

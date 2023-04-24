@@ -88,6 +88,32 @@ public class dbConnectPatient extends dbConnect{
         return FXCollections.observableArrayList(arrayList);
     }
 
+    public Patient getPatientByID(int id){
+        Patient patient = null;
+        try {
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM PATIENT WHERE "
+                    + "ID = " + "'" + id + "'"
+            );
+            while(resultSet.next()){
+                patient = new Patient(
+                    resultSet.getInt("ID"),
+                    resultSet.getString("FIRST_NAME"),
+                    resultSet.getString("LAST_NAME"),
+                    LocalDate.parse(resultSet.getString("DATE_OF_BIRTH")),
+                    Integer.parseInt(resultSet.getString("AGE")),
+                    resultSet.getString("GENDER"),
+                    resultSet.getString("MOBILE"),
+                    resultSet.getString("SYMPTOMS")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.exit(1);
+        }
+        return patient;
+    }
+
     public ObservableList getObservableList(ObservableList patientObservableList)
     {
 

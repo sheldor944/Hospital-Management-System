@@ -21,17 +21,17 @@ public class dbConnectDoctor extends dbConnect{
                 "INSERT INTO DOCTOR "
                 + "VALUES"
                 + "("
-                        + "'" + doctor.getId() + "', "
-                        + "'" + doctor.getFirstName() + "', "
-                        + "'" + doctor.getLastName() + "', "
-                        + "'" + doctor.getDateOfBirth() + "', "
-                        + "'" + doctor.getAge() + "', "
-                        + "'" + doctor.getGender() + "', "
-                        + "'" + doctor.getMobile() + "', "
-                        + "'" + doctor.getJoiningDate() + "', "
-                        + "'" + doctor.getPost() + "', "
-                        + "'" + doctor.getDepartment() + "', "
-                        + "'" + doctor.getDescription() + "'"
+                    + "'" + doctor.getId() + "', "
+                    + "'" + doctor.getFirstName() + "', "
+                    + "'" + doctor.getLastName() + "', "
+                    + "'" + doctor.getDateOfBirth() + "', "
+                    + "'" + doctor.getAge() + "', "
+                    + "'" + doctor.getGender() + "', "
+                    + "'" + doctor.getMobile() + "', "
+                    + "'" + doctor.getJoiningDate() + "', "
+                    + "'" + doctor.getPost() + "', "
+                    + "'" + doctor.getDepartment() + "', "
+                    + "'" + doctor.getDescription() + "'"
                 + ")"
             );
         }
@@ -58,7 +58,7 @@ public class dbConnectDoctor extends dbConnect{
         int doctorCount = -1;
         try {
             resultSet = statement.executeQuery(
-                    "SELECT COUNT FROM STATISTICS WHERE NAME = 'DOCTOR_COUNT'"
+                "SELECT COUNT FROM STATISTICS WHERE NAME = 'DOCTOR_COUNT'"
             );
             while(resultSet.next()){
                 doctorCount = resultSet.getInt("COUNT");
@@ -71,21 +71,19 @@ public class dbConnectDoctor extends dbConnect{
     }
 
     public ObservableList <String> getDoctorByDepartment(String department){
-        System.out.println("Getting doctors by Department.");
         ArrayList <String> arrayList = new ArrayList<>();
         try {
             resultSet = statement.executeQuery(
-                    "SELECT * FROM DOCTOR WHERE "
-                    + "DEPARTMENT = " + "'" + department + "'"
+                "SELECT * FROM DOCTOR WHERE "
+                + "DEPARTMENT = " + "'" + department + "'"
             );
 
             while(resultSet.next()){
                 int id = resultSet.getInt("ID");
                 String name =
-                        resultSet.getString("FIRST_NAME")
-                        + " "
-                        + resultSet.getString("LAST_NAME");
-                System.out.println(id + " " + name);
+                    resultSet.getString("FIRST_NAME")
+                    + " "
+                    + resultSet.getString("LAST_NAME");
                 arrayList.add(id + " " + name);
             }
         } catch (SQLException e) {
@@ -93,8 +91,6 @@ public class dbConnectDoctor extends dbConnect{
             e.printStackTrace();
             System.exit(1);
         }
-
-        System.out.println(arrayList);
         return FXCollections.observableArrayList(arrayList);
     }
 
@@ -125,6 +121,35 @@ public class dbConnectDoctor extends dbConnect{
             System.exit(1);
         }
         return FXCollections.observableArrayList(arrayList);
+    }
+
+    public Doctor getDoctorByID(int id){
+        Doctor doctor = null;
+        try {
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM DOCTOR WHERE "
+                            + "ID = " + "'" + id + "'"
+            );
+            while(resultSet.next()){
+                doctor = new Doctor(
+                        resultSet.getInt("ID"),
+                        resultSet.getString("FIRST_NAME"),
+                        resultSet.getString("LAST_NAME"),
+                        LocalDate.parse(resultSet.getString("DATE_OF_BIRTH")),
+                        Integer.parseInt(resultSet.getString("AGE")),
+                        resultSet.getString("GENDER"),
+                        resultSet.getString("MOBILE"),
+                        LocalDate.parse(resultSet.getString("JOINING_DATE")),
+                        resultSet.getString("POST"),
+                        resultSet.getString("DEPARTMENT"),
+                        resultSet.getString("DESCRIPTION")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.exit(1);
+        }
+        return doctor;
     }
 
     public void updateDoctor(int doctorID, Doctor updatedDoctor){

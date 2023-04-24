@@ -5,12 +5,18 @@ import database.dbConnectDoctor;
 import datamodel.Appointment;
 import datamodel.Hospital;
 import datamodel.Patient;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -19,7 +25,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class addAppointment implements Initializable {
+public class addAppointment extends Controller implements Initializable {
     @FXML
     private ChoiceBox <String> departmentPicker;
     @FXML
@@ -54,35 +60,37 @@ public class addAppointment implements Initializable {
             if (newValue != null) {
                 selectedDate = newValue;
                 departmentPicker.setDisable(false);
-                datePicker.setDisable(true);
             }
         });
-        departmentPicker.getSelectionModel().selectedItemProperty().addListener((observable , oldValue , newValue ) ->
-        {
-            if (newValue != null) {
-                selectedDept = newValue ;
-                doctorPicker.setDisable(false);
-                doctorPicker.getItems().removeAll();
-                doctorPicker.getItems().addAll(
-                    new dbConnectDoctor().getDoctorByDepartment(selectedDept)
-                );
-                departmentPicker.setDisable(true);
-            }
+        departmentPicker.getSelectionModel().selectedItemProperty().addListener(
+            (observable , oldValue , newValue ) -> {
+                if (newValue != null) {
+                    selectedDept = newValue ;
+                    doctorPicker.setDisable(false);
+                    doctorPicker.getItems().removeAll();
+                    doctorPicker.setItems(
+                        new dbConnectDoctor().getDoctorByDepartment(selectedDept)
+                    );
+                    timePicker.setItems(
+                        FXCollections.observableArrayList()
+                    );
+                }
         });
         doctorPicker.getSelectionModel().selectedItemProperty().addListener(
             (observableValue, oldValue, newValue) -> {
-                String doctorInfo = newValue;
-                doctorID = Integer.parseInt(
-                    (doctorInfo.split("\\s+"))[0]
-                );
-                timePicker.getItems().addAll(
-                    database.getAvailableTimes(
-                        doctorID,
-                        datePicker.getValue()
-                    )
-                );
-                timePicker.setDisable(false);
-                doctorPicker.setDisable(true);
+                if(newValue != null) {
+                    String doctorInfo = newValue;
+                    doctorID = Integer.parseInt(
+                            (doctorInfo.split("\\s+"))[0]
+                    );
+                    timePicker.setItems(
+                            database.getAvailableTimes(
+                                    doctorID,
+                                    datePicker.getValue()
+                            )
+                    );
+                    timePicker.setDisable(false);
+                }
             }
         );
         LocalDate minDate = LocalDate.now();
@@ -101,8 +109,7 @@ public class addAppointment implements Initializable {
         selectedDept = dept ;
         return  dept ;
     }
-    public void submit(ActionEvent event )
-    {
+    public void submit(ActionEvent event ) throws IOException {
         if (departmentPicker.getValue() == null
                 || datePicker.getValue() == null
                 || doctorPicker.getValue() == null
@@ -112,17 +119,28 @@ public class addAppointment implements Initializable {
             return;
         } else {
             dbConnectAppointment database = new dbConnectAppointment();
-            database.addAppointmentToDB(
-                new Appointment(
+            Appointment appointment = new Appointment(
                     doctorID,
                     patient.getId(),
                     selectedDate,
                     timePicker.getValue(),
                     selectedDept
-                )
             );
+            database.addAppointmentToDB(appointment);
+            database.close();
+
+            FXMLLoader loader =
+                new FXMLLoader(getClass().getResource("/fxml/DisplayAppointment.fxml"));
+            root = loader.load();
+
+            DisplayAppointmentController controller =
+                    loader.getController();
+            controller.setAppointment(appointment);
+            controller.init();
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
     }
-
-
 }

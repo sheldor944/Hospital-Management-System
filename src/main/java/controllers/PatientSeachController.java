@@ -68,14 +68,14 @@ public class PatientSeachController implements Initializable {
             dbConnectPatient dbPatient = new dbConnectPatient() ;
             patientObservableList = dbPatient.getObservableList(patientObservableList) ;
 
-            patientIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            firstNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-            dateOfBirthTableColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-            ageTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
-            genderTableColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
-            moileNumberTableColumn.setCellValueFactory(new PropertyValueFactory<>("mobile"));
-            symptomsTableColumn.setCellValueFactory(new PropertyValueFactory<>("symptoms"));
+            patientIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+            firstNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("FIRST NAME"));
+            lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("LAST NAME"));
+            dateOfBirthTableColumn.setCellValueFactory(new PropertyValueFactory<>("DOB"));
+            ageTableColumn.setCellValueFactory(new PropertyValueFactory<>("AGE"));
+            genderTableColumn.setCellValueFactory(new PropertyValueFactory<>("GENDER"));
+            moileNumberTableColumn.setCellValueFactory(new PropertyValueFactory<>("MOBILE"));
+            symptomsTableColumn.setCellValueFactory(new PropertyValueFactory<>("SYMPTOMS"));
 
             patientTableView.setItems(patientObservableList);
 

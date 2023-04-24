@@ -46,7 +46,6 @@ public class dbConnectAppointment extends  dbConnect {
                     + "DATE = '" + appointment.getDate() + "' AND "
                     + "TIME = '" + appointment.getTime() + "'"
             );
-//            System.out.println(appointment.getTime());
 
             while(resultSet.next()){
                 found = true;

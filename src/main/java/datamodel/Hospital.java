@@ -1,7 +1,7 @@
 package datamodel;
 
 public class Hospital {
-    private static String[] departments = {
+    private static final String[] departments = {
             "MEDICINE",
             "SURGERY",
             "CARDIOLOGY",
