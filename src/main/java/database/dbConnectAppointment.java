@@ -66,7 +66,9 @@ public class dbConnectAppointment extends  dbConnect {
 
         while (time.compareTo(LocalTime.of(18, 0)) <= 0) {
             Appointment appointment = new Appointment(doctorID, localDate, time);
-            if(!searchAppointment(appointment)) availableTimes.add(time);
+            if(!searchAppointment(appointment)) {
+                availableTimes.add(time);
+            }
             time = time.plusMinutes(20);
         }
 

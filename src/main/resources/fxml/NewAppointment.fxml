@@ -20,7 +20,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="datePicker" layoutX="215.0" layoutY="92.0" onAction="#getSelectedDate" promptText="Choose a date" />
+      <DatePicker fx:id="datePicker" layoutX="215.0" layoutY="92.0" promptText="Choose a date" />
       <Button fx:id="submitButton" layoutX="402.0" layoutY="622.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
       <ChoiceBox fx:id="timePicker" layoutX="215.0" layoutY="367.0" prefWidth="150.0" />
       <Label layoutX="98.0" layoutY="371.0" text="Time " />

@@ -2,6 +2,7 @@ package controllers;
 
 import database.dbConnectAppointment;
 import database.dbConnectDoctor;
+import datamodel.Appointment;
 import datamodel.Hospital;
 import datamodel.Patient;
 import javafx.event.ActionEvent;
@@ -30,9 +31,10 @@ public class addAppointment implements Initializable {
     private ChoiceBox <LocalTime> timePicker;
 
 
-    Date selectedDate ;
+    LocalDate selectedDate ;
     String selectedDept ;
     Patient patient  ;
+    private int doctorID;
     dbConnectAppointment database = new dbConnectAppointment();
 
     public void setPatient(Patient patient) {
@@ -50,7 +52,9 @@ public class addAppointment implements Initializable {
         datePicker.valueProperty().addListener((observable , oldValue , newValue ) ->
         {
             if (newValue != null) {
+                selectedDate = newValue;
                 departmentPicker.setDisable(false);
+                datePicker.setDisable(true);
             }
         });
         departmentPicker.getSelectionModel().selectedItemProperty().addListener((observable , oldValue , newValue ) ->
@@ -58,24 +62,27 @@ public class addAppointment implements Initializable {
             if (newValue != null) {
                 selectedDept = newValue ;
                 doctorPicker.setDisable(false);
+                doctorPicker.getItems().removeAll();
                 doctorPicker.getItems().addAll(
                     new dbConnectDoctor().getDoctorByDepartment(selectedDept)
                 );
+                departmentPicker.setDisable(true);
             }
         });
         doctorPicker.getSelectionModel().selectedItemProperty().addListener(
             (observableValue, oldValue, newValue) -> {
                 String doctorInfo = newValue;
-                int id = Integer.parseInt(
+                doctorID = Integer.parseInt(
                     (doctorInfo.split("\\s+"))[0]
                 );
                 timePicker.getItems().addAll(
-                        database.getAvailableTimes(
-                            id,
-                            datePicker.getValue()
-                        )
+                    database.getAvailableTimes(
+                        doctorID,
+                        datePicker.getValue()
+                    )
                 );
                 timePicker.setDisable(false);
+                doctorPicker.setDisable(true);
             }
         );
         LocalDate minDate = LocalDate.now();
@@ -94,29 +101,26 @@ public class addAppointment implements Initializable {
         selectedDept = dept ;
         return  dept ;
     }
-    public Date getSelectedDate(ActionEvent event)
-    {
-        LocalDate localDate = datePicker.getValue();
-        Date date = Date.valueOf(localDate);
-        selectedDate = date ;
-        return date ;
-    }
     public void submit(ActionEvent event )
     {
-        if (departmentPicker.getValue() == null || datePicker.getValue() == null || timePicker.getValue() == null) {
-            // Show an error message to the user
+        if (departmentPicker.getValue() == null
+                || datePicker.getValue() == null
+                || doctorPicker.getValue() == null
+                || timePicker.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all required fields.", ButtonType.OK);
             alert.showAndWait();
             return;
-//            System.out.println("Please fill all the required fields");
         } else {
-            // Submit the form
-            System.out.println(getSelectedDepartment(event));
-            System.out.println(getSelectedDate(event));
-            System.out.println(timePicker.getValue());
-            System.out.println(patient.getId());
-//            dbapp.addAppointment(patient.getId() ,"did420 " , selectedDept , timePicker.getValue() , "Ronaldo" , patient.getFirstName());
-            System.out.println("submit o click oise ");
+            dbConnectAppointment database = new dbConnectAppointment();
+            database.addAppointmentToDB(
+                new Appointment(
+                    doctorID,
+                    patient.getId(),
+                    selectedDate,
+                    timePicker.getValue(),
+                    selectedDept
+                )
+            );
         }
     }
 
