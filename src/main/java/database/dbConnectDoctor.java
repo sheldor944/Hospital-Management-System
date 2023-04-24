@@ -71,6 +71,7 @@ public class dbConnectDoctor extends dbConnect{
     }
 
     public ObservableList <String> getDoctorByDepartment(String department){
+        System.out.println("Getting doctors by Department.");
         ArrayList <String> arrayList = new ArrayList<>();
         try {
             resultSet = statement.executeQuery(
@@ -93,6 +94,7 @@ public class dbConnectDoctor extends dbConnect{
             System.exit(1);
         }
 
+        System.out.println(arrayList);
         return FXCollections.observableArrayList(arrayList);
     }
 

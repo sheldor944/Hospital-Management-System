@@ -56,32 +56,47 @@ public class AddPatientController extends Controller {
 
     @FXML
     void createNewPatient(ActionEvent event) throws  IOException{
+        if (firstName.getText().isEmpty()
+            || lastName.getText().isEmpty()
+            || dateOfBirth.getValue() == null
+            || patientAge.getText().isEmpty()
+            || patientMobile.getText().isEmpty()
+            || Gender.getSelectedToggle() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all required fields.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+        dbConnectPatient database = new dbConnectPatient();
 
-//        if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || dateOfBirth.getValue() == null ||
-//                patientAge.getText().isEmpty() || patientMobile.getText().isEmpty() || Gender.getSelectedToggle() == null) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all required fields.", ButtonType.OK);
-//            alert.showAndWait();
-//            return;
-//        }
-//        dbConnect db = new dbConnect();
-//        String gender ;
-//        if(rMaleButton.isSelected()){
-//            gender = "male";
-//        }
-//        else if ( rFemaleButton.isSelected()){
-//            gender ="female ";
-//        }
-//        else{
-//            gender ="other" ;
-//        }
-//        int age = Integer.parseInt(patientAge.getText());
-//        System.out.println("hello");
-//        LocalDate localDate = dateOfBirth.getValue();
-//        Date date = Date.valueOf(localDate);
-//
-//        patient = new Patient(firstName.getText() , lastName.getText() ,date , age ,gender , patientMobile.getText() ,symptomsTextArea.getText()  );
-//        db.addPatient(patient);
-//
+        int id = database.getPatientCount();
+        database.increasePatientCount();
+
+        String gender;
+        if(rMaleButton.isSelected()){
+            gender = "MALE";
+        }
+        else if ( rFemaleButton.isSelected()){
+            gender = "FEMALE";
+        }
+        else{
+            gender = "OTHER" ;
+        }
+        int age = Integer.parseInt(patientAge.getText());
+        LocalDate localDate = dateOfBirth.getValue();
+
+        patient = new Patient(
+            id,
+            firstName.getText(),
+            lastName.getText(),
+            localDate,
+            age,
+            gender,
+            patientMobile.getText(),
+            symptomsTextArea.getText()
+        );
+        database.addPatientToDB(patient);
+        database.close();
+
 //        goToAppointmentPage(event);
     }
     public void goToAppointmentPage(ActionEvent event ) throws IOException

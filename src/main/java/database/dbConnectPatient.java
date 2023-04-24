@@ -28,25 +28,23 @@ public class dbConnectPatient extends dbConnect{
                     + ")"
             );
         }
-        catch (Exception e ){
+        catch (Exception e){
             System.out.println(e);
-        } finally {
-            close();
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 
     public void increasePatientCount(){
         try {
             statement.executeUpdate(
-                    "UPDATE STATISTICS "
-                            + "SET COUNT = COUNT + 1 "
-                            + "WHERE NAME = 'PATIENT_COUNT'"
+            "UPDATE STATISTICS "
+                + "SET COUNT = COUNT + 1 "
+                + "WHERE NAME = 'PATIENT_COUNT'"
             );
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);
-        } finally {
-            close();
         }
     }
 
@@ -62,8 +60,6 @@ public class dbConnectPatient extends dbConnect{
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);
-        } finally {
-            close();
         }
         return patientCount;
     }
@@ -74,22 +70,20 @@ public class dbConnectPatient extends dbConnect{
             resultSet = statement.executeQuery("SELECT * FROM PATIENT");
             while(resultSet.next()){
                 arrayList.add(new Patient(
-                        resultSet.getInt("ID"),
-                        resultSet.getString("FIRST_NAME"),
-                        resultSet.getString("LAST_NAME"),
-                        LocalDate.parse(resultSet.getString("DATE_OF_BIRTH")),
-                        Integer.parseInt(resultSet.getString("AGE")),
-                        resultSet.getString("GENDER"),
-                        resultSet.getString("MOBILE"),
-                        resultSet.getString("SYMPTOMS")
+                    resultSet.getInt("ID"),
+                    resultSet.getString("FIRST_NAME"),
+                    resultSet.getString("LAST_NAME"),
+                    LocalDate.parse(resultSet.getString("DATE_OF_BIRTH")),
+                    Integer.parseInt(resultSet.getString("AGE")),
+                    resultSet.getString("GENDER"),
+                    resultSet.getString("MOBILE"),
+                    resultSet.getString("SYMPTOMS")
                 ));
             }
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
             System.exit(1);
-        } finally {
-            close();
         }
         return FXCollections.observableArrayList(arrayList);
     }
@@ -124,16 +118,14 @@ public class dbConnectPatient extends dbConnect{
     public void updatePatient(int patientID, Patient updatedPatient){
         try {
             statement.executeUpdate(
-                    "DELETE FROM PATIENT WHERE "
-                    + "ID = " + "'" + patientID + "'"
+                "DELETE FROM PATIENT WHERE "
+                + "ID = " + "'" + patientID + "'"
             );
             addPatientToDB(updatedPatient);
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
             System.exit(1);
-        } finally{
-            close();
         }
     }
     public void updatePatient(Patient patient)

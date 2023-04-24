@@ -1,6 +1,8 @@
 package controllers;
 
 import database.dbConnectAppointment;
+import database.dbConnectDoctor;
+import datamodel.Hospital;
 import datamodel.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,25 +14,26 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class addAppointment implements Initializable {
     @FXML
-    private ChoiceBox<String> departmentPicker ;
+    private ChoiceBox <String> departmentPicker;
     @FXML
-    private ChoiceBox<?> doctorChoiceBox;
+    private ChoiceBox <String> doctorPicker;
     @FXML
-    private DatePicker datePicker ;
-    private  Timestamp appointmentDate ;
+    private DatePicker datePicker;
+    private  Timestamp appointmentDate;
     @FXML
-    private ChoiceBox<Timestamp> timePicker;
+    private ChoiceBox <LocalTime> timePicker;
 
 
     Date selectedDate ;
     String selectedDept ;
     Patient patient  ;
-    dbConnectAppointment dbapp = new dbConnectAppointment();
+    dbConnectAppointment database = new dbConnectAppointment();
 
     public void setPatient(Patient patient) {
         this.patient = patient;
@@ -38,38 +41,43 @@ public class addAppointment implements Initializable {
 
     private ArrayList<Timestamp> times = new ArrayList<>();
 
-    private String[] departments = {"Medicine" , "Surgery" , "Cardiology"  , "Neurology" , "Psychiatry" , "Radiotherapy" , "ENT" , "Casualty", "Urology" , "Pediatrics" , "Dermatology" , "Gastroenterology" , "Hepatology" , "Neonatology" , "Gynecology and Obstetrics" , "Orthopedics and traumatology"}  ;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        departmentPicker.getItems().addAll(departments);
-        departmentPicker.setDisable(true); // Disable the departmentPicker initially
-        timePicker.setDisable(true); // Disable the timePicker initially
+        departmentPicker.getItems().addAll(Hospital.getDepartments());
+        departmentPicker.setDisable(true);
+        timePicker.setDisable(true);
+        doctorPicker.setDisable(true);
         datePicker.valueProperty().addListener((observable , oldValue , newValue ) ->
         {
             if (newValue != null) {
-                // If a date is selected, enable the departmentPicker and disable the timePicker
                 departmentPicker.setDisable(false);
-                timePicker.setDisable(true);
-            } else {
-                // If no date is selected, disable both the departmentPicker and the timePicker
-                departmentPicker.setDisable(true);
-                timePicker.setDisable(true);
             }
         });
         departmentPicker.getSelectionModel().selectedItemProperty().addListener((observable , oldValue , newValue ) ->
         {
             if (newValue != null) {
-                // If a department is selected, enable the timePicker
-                timePicker.setDisable(false);
                 selectedDept = newValue ;
-                times = dbapp.searchForAppointment(selectedDate,newValue , times);
-                timePicker.getItems().addAll(times);
-            } else {
-                // If no department is selected, disable the timePicker
-                timePicker.setDisable(true);
+                doctorPicker.setDisable(false);
+                doctorPicker.getItems().addAll(
+                    new dbConnectDoctor().getDoctorByDepartment(selectedDept)
+                );
             }
         });
+        doctorPicker.getSelectionModel().selectedItemProperty().addListener(
+            (observableValue, oldValue, newValue) -> {
+                String doctorInfo = newValue;
+                int id = Integer.parseInt(
+                    (doctorInfo.split("\\s+"))[0]
+                );
+                timePicker.getItems().addAll(
+                        database.getAvailableTimes(
+                            id,
+                            datePicker.getValue()
+                        )
+                );
+                timePicker.setDisable(false);
+            }
+        );
         LocalDate minDate = LocalDate.now();
         LocalDate maxDate = minDate.plusDays(5);
         datePicker.setDayCellFactory(picker -> new DateCell() {
