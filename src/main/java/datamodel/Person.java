@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class Person {
+abstract public class Person {
     private int id;
     private String firstName, lastName;
     private LocalDate dateOfBirth;

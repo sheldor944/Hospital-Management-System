@@ -35,8 +35,10 @@ public class DisplayAppointmentController {
     }
 
     public void init(){
-        Patient patient = new dbConnectPatient().getPatientByID(appointment.getPatientID());
-        Doctor doctor = new dbConnectDoctor().getDoctorByID(appointment.getDoctorID());
+        Patient patient =
+                new dbConnectPatient().getPatientByID(appointment.getPatientID());
+        Doctor doctor =
+                new dbConnectDoctor().getDoctorByID(appointment.getDoctorID());
 
         patientNameLabel.setText(
                 "Patient: "

@@ -12,14 +12,10 @@
       <Label layoutX="112.0" layoutY="60.0" text="Search" />
       <TableView fx:id="patientTableView" layoutX="100.0" layoutY="114.0" prefHeight="474.0" prefWidth="1050.0" style="-fx-background-color: azure;">
         <columns>
-          <TableColumn fx:id="patientIdTableColumn" prefWidth="163.0" text="patientID" />
-          <TableColumn fx:id="firstNameTableColumn" prefWidth="78.0" text="firstName" />
-            <TableColumn fx:id="lastNameTableColumn" prefWidth="87.0" text="lastName" />
-            <TableColumn fx:id="dateOfBirthTableColumn" prefWidth="88.0" text="dateOfBirth" />
-            <TableColumn fx:id="ageTableColumn" prefWidth="88.0" text="age" />
-            <TableColumn fx:id="genderTableColumn" prefWidth="133.0" text="gender" />
-            <TableColumn fx:id="moileNumberTableColumn" prefWidth="152.0" text="MobileNumber" />
-            <TableColumn fx:id="symptomsTableColumn" prefWidth="258.0" text="symptoms" />
+          <TableColumn fx:id="patientIdTableColumn" prefWidth="87.0" text="ID" />
+          <TableColumn fx:id="firstNameTableColumn" prefWidth="391.0" text="FIRST NAME" />
+            <TableColumn fx:id="lastNameTableColumn" prefWidth="355.0" text="LAST NAME" />
+            <TableColumn fx:id="ageTableColumn" prefWidth="216.0" text="AGE" />
         </columns>
       </TableView>
       <TextField fx:id="searchBarTextField" layoutX="227.0" layoutY="56.0" prefHeight="25.0" prefWidth="866.0" style="-fx-background-color: azure;" />
