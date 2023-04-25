@@ -89,6 +89,10 @@ public class DisplayPatientController extends Controller {
         patientMobile.setText(patient.getMobile());
         symptomsTextArea.setText(patient.getSymptoms());
 
+
+//        ------ the code below handles the appointment bit ------
+
+
         dbConnectAppointment database = new dbConnectAppointment();
         Appointment appointment = database.getAppointmentByPatientID(patient.getId());
         Doctor doctor = new dbConnectDoctor().getDoctorByID(appointment.getDoctorID());
@@ -113,7 +117,6 @@ public class DisplayPatientController extends Controller {
         alert.showAndWait().ifPresent(response -> {
             if (response == buttonTypeYes) {
                 hasDecidedToPoceed = true;
-                // perform the action
             }
         });
 

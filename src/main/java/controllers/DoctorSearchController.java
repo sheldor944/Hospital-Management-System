@@ -35,7 +35,9 @@ public class DoctorSearchController implements Initializable {
     @FXML
     private TableColumn<Doctor , String> idTableColumn ;
     @FXML
-    private  TableColumn<Doctor, String> nameTableColumn ;
+    private  TableColumn<Doctor, String> firstNameTableColumn ;
+    @FXML
+    private  TableColumn<Doctor, String> lastNameTableColumn ;
     @FXML
     private TableColumn<Doctor , String> departmentTableColumn ;
     @FXML
@@ -50,54 +52,52 @@ public class DoctorSearchController implements Initializable {
     private Stage stage ;
     private Scene scene ;
 
-    ObservableList<Doctor> doctorObservableList = FXCollections.observableArrayList() ;
+    ObservableList<Doctor> doctorObservableList;
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle)
     {
         try{
-            dbConnectDoctor dbDoctor = new dbConnectDoctor() ;
-            doctorObservableList =  dbDoctor.getObservableList(doctorObservableList) ;
+            dbConnectDoctor dbDoctor = new dbConnectDoctor();
+            doctorObservableList = dbDoctor.getAllDoctors();
 
             idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+            firstNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+            lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
             departmentTableColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
-            descriptionTableColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
             doctorTableView.setItems(doctorObservableList);
 
             FilteredList<Doctor> doctorFilteredList = new FilteredList<>(doctorObservableList , b -> true ) ;
-            searchBarTextField.textProperty().addListener((observable , oldValue , newValue) ->{
-                doctorFilteredList.setPredicate(doctor ->{
+            searchBarTextField.textProperty().addListener((observable , oldValue , newValue) -> {
+                doctorFilteredList.setPredicate(doctor -> {
                             if(newValue.isEmpty() || newValue.isBlank() || newValue == null ){
                                 return true ;
                             }
-                            String searchKeyword = newValue.toLowerCase() ;
+                            String searchKeyword = newValue.toLowerCase();
                             if (doctor.getFirstName().toLowerCase().indexOf(searchKeyword) > -1)
                             {
                                 return true ;
                             }
-                            if(doctor.getDescription().toLowerCase().indexOf(searchKeyword) > -1)
-                            {
-                                return  true ;
-                            }
-                            if(doctor.getDepartment().toLowerCase().indexOf(searchKeyword) >-1)
-                            {
-                                return  true ;
-                            }
-//                            if(doctor.getId().toLowerCase().indexOf(searchKeyword) > -1)
-//                            {
-//                                return  true ;
-//                            }
-                            else{
-                                return  false ;
-                            }
+                            return false;
                         }
-                        );
-            }
-        );
+                    );
+                }
+            );
             SortedList<Doctor> sortedList = new SortedList<>(doctorFilteredList);
             sortedList.comparatorProperty().bind(doctorTableView.comparatorProperty());
             doctorTableView.setItems(sortedList);
+
+            doctorTableView.setOnMouseClicked(event -> {
+                if(event.getClickCount() == 2){
+                    Doctor selectedDoctor =
+                            (Doctor) doctorTableView
+                                    .getSelectionModel()
+                                    .getSelectedItem();
+                    if(selectedDoctor != null){
+                        System.out.println(selectedDoctor);
+                    }
+                }
+            });
         }
         catch (Exception e )
         {

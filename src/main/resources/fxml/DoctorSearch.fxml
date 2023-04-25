@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #076EFB;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorSearchController">
    <children>
-      <TableView fx:id="doctorTableView" layoutX="42.0" layoutY="66.0" prefHeight="566.0" prefWidth="1141.0" style="-fx-background-color: azure;">
+      <TableView fx:id="doctorTableView" layoutX="42.0" layoutY="68.0" prefHeight="566.0" prefWidth="1141.0" style="-fx-background-color: azure;">
         <columns>
             <TableColumn fx:id="idTableColumn" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="departmentTableColumn" prefWidth="75.0" text="Department" />
-            <TableColumn fx:id="descriptionTableColumn" prefWidth="75.0" text="Description" />
+          <TableColumn fx:id="firstNameTableColumn" prefWidth="398.0" text="FIRST NAME" />
+            <TableColumn fx:id="lastNameTableColumn" prefWidth="468.0" text="LAST NAME" />
+          <TableColumn fx:id="departmentTableColumn" prefWidth="199.0" text="DEPARTMENT" />
         </columns>
       </TableView>
       <Label layoutX="42.0" layoutY="31.0" text="Search" />

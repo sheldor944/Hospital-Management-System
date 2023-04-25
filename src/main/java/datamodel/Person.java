@@ -93,4 +93,11 @@ abstract public class Person {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    public String toString(){
+        return
+                "Name: " + firstName + " " + lastName
+                + " (" + id + ")\n"
+                + "DOB: " + dateOfBirth;
+    }
 }
