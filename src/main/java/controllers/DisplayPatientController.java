@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -164,5 +165,21 @@ public class DisplayPatientController extends Controller {
         );
         if(getConfirmation()) database.updatePatient(id, patient);
         database.close();
+    }
+
+    @FXML
+    void deletePatientClicked(ActionEvent event) throws IOException {
+        if(getConfirmation()){
+            new dbConnectPatient().delete(patient.getId());
+            new dbConnectAppointment().deleteByPatientID(patient.getId());
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.CONFIRMATION,
+                            "Patient successfully deleted.",
+                            ButtonType.OK
+                    );
+            alert.showAndWait();
+            switchToPatient(event);
+        }
     }
 }

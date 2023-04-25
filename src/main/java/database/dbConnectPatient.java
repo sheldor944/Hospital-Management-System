@@ -162,6 +162,20 @@ public class dbConnectPatient extends dbConnect{
             System.exit(1);
         }
     }
+
+    public void delete(int id){
+        try {
+            statement.executeUpdate(
+                    "DELETE FROM PATIENT WHERE "
+                            + "ID = '" + id + "'"
+            );
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     public void updatePatient(Patient patient)
     {
         String updateSql = "UPDATE patient SET "
