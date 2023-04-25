@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,7 +31,7 @@ import java.util.AbstractMap;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class DoctorSearchController implements Initializable {
+public class DoctorSearchController extends Controller implements Initializable {
     @FXML
     private TableView doctorTableView ;
     @FXML
@@ -94,7 +96,7 @@ public class DoctorSearchController implements Initializable {
                                     .getSelectionModel()
                                     .getSelectedItem();
                     if(selectedDoctor != null){
-                        System.out.println(selectedDoctor);
+                        switchToDisplayDoctor(event, selectedDoctor);
                     }
                 }
             });
@@ -105,6 +107,30 @@ public class DoctorSearchController implements Initializable {
         }
 
     }
+
+    private void switchToDisplayDoctor(MouseEvent event, Doctor selectedDoctor) {
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass()
+                        .getResource("/fxml/DisplayDoctor.fxml")
+                );
+        try {
+            root = loader.load();
+            DisplayDoctorController controller =
+                    loader.getController();
+            controller.setDoctor(selectedDoctor);
+            controller.init();
+
+            stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
+    }
+
     @FXML
     void returnToDoctorPage(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/fxml/Doctor.fxml"));

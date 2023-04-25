@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e9a20b7-5cf3-469d-9cd2-ebae4e15934b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/DisplayDoctorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/DisplayDoctor.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DisplayPatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DisplayPatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AddDoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AddDoctorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DoctorSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DoctorSearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datamodel/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datamodel/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/DoctorSearch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/DoctorSearch.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/dbConnectDoctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/dbConnectDoctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database/database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -152,13 +152,24 @@ public class dbConnectDoctor extends dbConnect{
         return doctor;
     }
 
-    public void updateDoctor(int doctorID, Doctor updatedDoctor){
+    public void updateDoctor(int doctorID, Doctor doctor){
         try {
             statement.executeUpdate(
-                    "DELETE FROM DOCTOR WHERE "
-                            + "ID = " + "'" + doctorID + "'"
+                "UPDATE DOCTOR SET "
+                    + "ID = '" + doctor.getId() + "', "
+                    + "FIRST_NAME = '" + doctor.getFirstName() + "', "
+                    + "LAST_NAME = '" + doctor.getLastName() + "', "
+                    + "DATE_OF_BIRTH = '" + doctor.getDateOfBirth() + "', "
+                    + "AGE = '" + doctor.getAge() + "', "
+                    + "GENDER = '" + doctor.getGender() + "', "
+                    + "MOBILE = '" + doctor.getMobile() + "', "
+                    + "JOINING_DATE = '" + doctor.getJoiningDate() + "', "
+                    + "POST = '" + doctor.getPost() + "', "
+                    + "DEPARTMENT = '" + doctor.getDepartment() + "', "
+                    + "DESCRIPTION = '" + doctor.getDescription() + "' "
+                    + "WHERE "
+                    + "ID = " + doctorID
             );
-            addDoctorToDB(updatedDoctor);
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();

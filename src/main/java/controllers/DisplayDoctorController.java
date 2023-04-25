@@ -5,17 +5,16 @@ import datamodel.Doctor;
 import datamodel.Hospital;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 
-public class AddDoctorController extends Controller implements Initializable {
+public class DisplayDoctorController extends Controller {
 
-    @FXML
-    private Label errorLabel;
     @FXML
     private TextField ageField;
 
@@ -27,6 +26,9 @@ public class AddDoctorController extends Controller implements Initializable {
 
     @FXML
     private TextArea descriptionField;
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     private TextField firstNameField;
@@ -46,13 +48,28 @@ public class AddDoctorController extends Controller implements Initializable {
     @FXML
     private TextField postField;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private Doctor doctor;
+
+    public void setDoctor(Doctor doctor){
+        this.doctor = doctor;
+    }
+
+    public void init(){
         departmentPicker.getItems().addAll(Hospital.getDepartments());
+        firstNameField.setText(doctor.getFirstName());
+        lastNameField.setText(doctor.getLastName());
+        dateOfBirthPicker.setValue(doctor.getDateOfBirth());
+        ageField.setText(Integer.toString(doctor.getAge()));
+        genderField.setText(doctor.getGender());
+        joiningDatePicker.setValue(doctor.getJoiningDate());
+        mobileField.setText(doctor.getMobile());
+        postField.setText(doctor.getPost());
+        departmentPicker.getSelectionModel().select(doctor.getDepartment());
+        descriptionField.setText(doctor.getDescription());
     }
 
     @FXML
-    void submit(ActionEvent event) {
+    void modifyButtonClicked(ActionEvent event) {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         LocalDate dateOfBirth = dateOfBirthPicker.getValue();
@@ -65,26 +82,24 @@ public class AddDoctorController extends Controller implements Initializable {
         String description = descriptionField.getText();
 
         if(firstName.isEmpty()
-            || lastName.isEmpty()
-            || dateOfBirth == null
-            || ageInString.isEmpty()
-            || gender.isEmpty()
-            || mobile.isEmpty()
-            || joiningDate == null
-            || post.isEmpty()
-            || department == null
-            || description.isEmpty()){
+                || lastName.isEmpty()
+                || dateOfBirth == null
+                || ageInString.isEmpty()
+                || gender.isEmpty()
+                || mobile.isEmpty()
+                || joiningDate == null
+                || post.isEmpty()
+                || department == null
+                || description.isEmpty()){
             errorLabel.setText("PLEASE FILL UP ALL THE INFORMATION.");
         }
         else{
             int age = Integer.parseInt(ageInString);
 
             dbConnectDoctor database = new dbConnectDoctor();
-            int id = database.getDoctorCount();
-            database.increaseDoctorCount();
 
-            Doctor doctor = new Doctor(
-                    id,
+            Doctor updatedDoctor = new Doctor(
+                    doctor.getId(),
                     firstName,
                     lastName,
                     dateOfBirth,
@@ -96,7 +111,7 @@ public class AddDoctorController extends Controller implements Initializable {
                     department,
                     description
             );
-            database.addDoctorToDB(doctor);
+            database.updateDoctor(doctor.getId(), updatedDoctor);
             database.close();
         }
     }

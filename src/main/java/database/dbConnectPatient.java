@@ -141,13 +141,21 @@ public class dbConnectPatient extends dbConnect{
         return patientObservableList ;
     }
 
-    public void updatePatient(int patientID, Patient updatedPatient){
+    public void updatePatient(int patientID, Patient patient){
         try {
             statement.executeUpdate(
-                "DELETE FROM PATIENT WHERE "
-                + "ID = " + "'" + patientID + "'"
+                "UPDATE PATIENT SET "
+                        + "ID = '" + patient.getId() + "', "
+                        + "FIRST_NAME = '" + patient.getFirstName() + "', "
+                        + "LAST_NAME = '" + patient.getLastName() + "', "
+                        + "DATE_OF_BIRTH = '" + patient.getDateOfBirth() + "', "
+                        + "AGE = '" + patient.getAge() + "', "
+                        + "GENDER = '" + patient.getGender() + "', "
+                        + "MOBILE = '" + patient.getMobile() + "', "
+                        + "SYMPTOMS = '" + patient.getSymptoms() + "', "
+                        + "ASSIGNED_DOCTOR_ID = '" + patient.getAssignedDoctorID() + "'"
+                    + "WHERE ID = " + patientID
             );
-            addPatientToDB(updatedPatient);
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
