@@ -8,8 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0"
-            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisplayDoctorController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisplayDoctorController">
     <children>
         <Label layoutX="71.0" layoutY="99.0" text="First Name" />
         <Label layoutX="530.0" layoutY="195.0" text="Description" />
@@ -34,5 +33,6 @@
         <TextField fx:id="postField" layoutX="175.0" layoutY="497.0" />
         <ChoiceBox fx:id="departmentPicker" layoutX="674.0" layoutY="87.0" prefWidth="150.0" />
         <Label fx:id="errorLabel" layoutX="512.0" layoutY="28.0" textFill="#903838" />
+      <Button layoutX="528.0" layoutY="580.0" mnemonicParsing="false" onAction="#deleteDoctorClicked" text="DELETE DOCTOR" />
     </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package controllers;
 
+import database.dbConnectAppointment;
 import database.dbConnectDoctor;
 import datamodel.Doctor;
 import datamodel.Hospital;
@@ -114,5 +115,18 @@ public class DisplayDoctorController extends Controller {
             database.updateDoctor(doctor.getId(), updatedDoctor);
             database.close();
         }
+    }
+
+    @FXML
+    void deleteDoctorClicked(ActionEvent event) {
+        System.out.println("Deleting doctor with ID: " + doctor.getId());
+        new dbConnectAppointment()
+                .deleteByDoctorID(
+                        doctor.getId()
+                );
+        new dbConnectDoctor()
+                .delete(
+                        doctor.getId()
+                );
     }
 }

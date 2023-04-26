@@ -8,9 +8,13 @@ import datamodel.Doctor;
 import datamodel.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,6 +75,12 @@ public class DisplayPatientController extends Controller {
         this.patient = patient;
     }
 
+    public void initialize(){
+        doctorLabel.setText("");
+        timeLabel.setText("");
+        dateLabel.setText("");
+    }
+
     public void init() {
         modifyButton.requestFocus();
 
@@ -96,11 +106,15 @@ public class DisplayPatientController extends Controller {
 
         dbConnectAppointment database = new dbConnectAppointment();
         Appointment appointment = database.getAppointmentByPatientID(patient.getId());
-        Doctor doctor = new dbConnectDoctor().getDoctorByID(appointment.getDoctorID());
+        if(appointment != null) {
+            Doctor doctor = new dbConnectDoctor().getDoctorByID(appointment.getDoctorID());
 
-        doctorLabel.setText("Assigned Doctor: " + doctor.getFirstName() + " " + doctor.getLastName());
-        dateLabel.setText("Date: " + appointment.getDate());
-        timeLabel.setText("Time: " + appointment.getTime());
+            doctorLabel.setText("Assigned Doctor: " + doctor.getFirstName() + " " + doctor.getLastName());
+            dateLabel.setText("Date: " + appointment.getDate());
+            timeLabel.setText("Time: " + appointment.getTime());
+        } else {
+            doctorLabel.setText("The patient has to be rescheduled.");
+        }
     }
 
     private boolean getConfirmation(){
@@ -181,5 +195,20 @@ public class DisplayPatientController extends Controller {
             alert.showAndWait();
             switchToPatient(event);
         }
+    }
+
+    @FXML
+    void rescheduleButtonClicked(ActionEvent event) throws IOException {
+        dbConnectAppointment database = new dbConnectAppointment();
+        database.deleteByPatientID(patient.getId());
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/NewAppointment.fxml"));
+        root = fxmlLoader.load();
+        addAppointment controller = fxmlLoader.getController();
+        controller.setPatient(patient);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -14,13 +14,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-public class DisplayAppointmentController {
+public class DisplayAppointmentController extends Controller {
 
     @FXML
     private Label dateLabel;
 
     @FXML
     private Label doctorNameLabel;
+
 
     @FXML
     private Label patientNameLabel;

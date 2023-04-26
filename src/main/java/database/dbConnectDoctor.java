@@ -177,6 +177,19 @@ public class dbConnectDoctor extends dbConnect{
         }
     }
 
+    public void delete(int id) {
+        try {
+            statement.executeUpdate(
+                    "DELETE FROM DOCTOR WHERE "
+                            + "ID = '" + id + "'"
+            );
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     public ObservableList<Doctor> getObservableList(ObservableList doctorObservableList)
     {
         try{
@@ -197,5 +210,4 @@ public class dbConnectDoctor extends dbConnect{
         }
         return doctorObservableList ;
     }
-
 }

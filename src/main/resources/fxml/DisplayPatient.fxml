@@ -39,5 +39,6 @@
       <Label fx:id="timeLabel" layoutX="1006.0" layoutY="288.0" text="Label" />
       <Label fx:id="dateLabel" layoutX="1006.0" layoutY="234.0" text="Label" />
       <Button layoutX="553.0" layoutY="529.0" mnemonicParsing="false" onAction="#deletePatientClicked" prefHeight="79.0" prefWidth="268.0" text="DELETE PATIENT" />
+      <Button layoutX="923.0" layoutY="529.0" mnemonicParsing="false" onAction="#rescheduleButtonClicked" prefHeight="79.0" prefWidth="268.0" text="RESCHEDULE" />
     </children>
 </AnchorPane>

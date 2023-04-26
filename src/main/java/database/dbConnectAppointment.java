@@ -136,6 +136,19 @@ public class dbConnectAppointment extends  dbConnect {
         }
     }
 
+    public void deleteByDoctorID(int id){
+        try {
+            statement.executeUpdate(
+                    "DELETE FROM APPOINTMENT WHERE "
+                        + "DOCTOR_ID = '" + id + "'"
+            );
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     public ArrayList<Timestamp> searchForAppointment(Date date, String department, ArrayList<Timestamp> time) {
         try {
             System.out.println("into ono  aise ");
