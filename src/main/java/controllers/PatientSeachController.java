@@ -1,6 +1,8 @@
 package controllers;
 
+import database.dbConnectAppointment;
 import database.dbConnectPatient;
+import datamodel.Appointment;
 import datamodel.Patient;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,10 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -55,6 +54,28 @@ public class PatientSeachController extends Controller implements Initializable 
             firstNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
             lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
             ageTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+
+            patientTableView.setRowFactory(tv -> {
+                return new TableRow<Patient>(){
+                    @Override
+                    protected void updateItem(Patient patient, boolean empty) {
+                        super.updateItem(patient, empty);
+
+                        if(!empty && patient != null){
+                            Appointment appointment =
+                                    new dbConnectAppointment()
+                                            .getAppointmentByPatientID(
+                                                    patient.getId()
+                                            );
+                            if(appointment == null) {
+                                setStyle("-fx-background-color: red;");
+                            }
+                        } else {
+                            setStyle("");
+                        }
+                    }
+                };
+            });
 
             patientTableView.setItems(patientObservableList);
 
