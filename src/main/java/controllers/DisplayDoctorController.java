@@ -11,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import utils.AlertUtils;
 
 import java.time.LocalDate;
 
@@ -95,6 +96,12 @@ public class DisplayDoctorController extends Controller {
             errorLabel.setText("PLEASE FILL UP ALL THE INFORMATION.");
         }
         else{
+            if(!AlertUtils.getConfirmation()) {
+                System.out.println("Cancelling doctor modification...");
+                init();
+                return;
+            }
+
             int age = Integer.parseInt(ageInString);
 
             dbConnectDoctor database = new dbConnectDoctor();
@@ -119,6 +126,11 @@ public class DisplayDoctorController extends Controller {
 
     @FXML
     void deleteDoctorClicked(ActionEvent event) {
+        if(!AlertUtils.getConfirmation()) {
+            System.out.println("Cancelling doctor delete...");
+            return;
+        }
+
         System.out.println("Deleting doctor with ID: " + doctor.getId());
         new dbConnectAppointment()
                 .deleteByDoctorID(

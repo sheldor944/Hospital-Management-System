@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import utils.AlertUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -78,36 +79,38 @@ public class AddDoctorController extends Controller implements Initializable {
             errorLabel.setText("PLEASE FILL UP ALL THE INFORMATION.");
         }
         else{
-            int age = Integer.parseInt(ageInString);
+            if(AlertUtils.getConfirmation()) {
+                int age = Integer.parseInt(ageInString);
 
-            dbConnectDoctor database = new dbConnectDoctor();
-            int id = database.getDoctorCount();
-            database.increaseDoctorCount();
+                dbConnectDoctor database = new dbConnectDoctor();
+                int id = database.getDoctorCount();
+                database.increaseDoctorCount();
 
-            Doctor doctor = new Doctor(
-                    id,
-                    firstName,
-                    lastName,
-                    dateOfBirth,
-                    age,
-                    gender,
-                    mobile,
-                    joiningDate,
-                    post,
-                    department,
-                    description
-            );
-            database.addDoctorToDB(doctor);
-            database.close();
+                Doctor doctor = new Doctor(
+                        id,
+                        firstName,
+                        lastName,
+                        dateOfBirth,
+                        age,
+                        gender,
+                        mobile,
+                        joiningDate,
+                        post,
+                        department,
+                        description
+                );
+                database.addDoctorToDB(doctor);
+                database.close();
 
-            Alert alert =
-                    new Alert(
-                            Alert.AlertType.CONFIRMATION,
-                            "Doctor successfully created.",
-                            ButtonType.OK
-                    );
-            alert.showAndWait();
-            switchToDoctor(event);
+                Alert alert =
+                        new Alert(
+                                Alert.AlertType.CONFIRMATION,
+                                "Doctor successfully created.",
+                                ButtonType.OK
+                        );
+                alert.showAndWait();
+                switchToDoctor(event);
+            }
         }
     }
 }

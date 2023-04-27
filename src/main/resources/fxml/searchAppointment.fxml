@@ -11,18 +11,16 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.searchAppointment">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SearchAppointment">
    <children>
       <Label layoutX="61.0" layoutY="60.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
       <TextField fx:id="searchBarTextField" layoutX="170.0" layoutY="56.0" prefHeight="25.0" prefWidth="455.0" />
       <TableView fx:id="appointmentTableView" layoutX="54.0" layoutY="100.0" prefHeight="418.0" prefWidth="846.0">
         <columns>
-            <TableColumn fx:id="patientIdTableColumn" prefWidth="160.79767608642578" text="patientId" />
-            <TableColumn fx:id="doctorIdTableColumn" prefWidth="92.20231628417969" text="DoctorId" />
-          <TableColumn fx:id="patientNameTableColumn" prefWidth="82.04281616210938" text="patientName" />
-          <TableColumn fx:id="doctorNameTableColumn" prefWidth="136.44293212890625" text="doctorName" />
-            <TableColumn fx:id="timeTableColumn" prefWidth="213.52227783203125" text="Time" />
-            <TableColumn fx:id="departmentTableColumn" prefWidth="161.24334716796875" text="Department" />
+          <TableColumn fx:id="patientNameTableColumn" prefWidth="178.0" text="Patient Name" />
+          <TableColumn fx:id="doctorNameTableColumn" prefWidth="449.0" text="Doctor Name" />
+            <TableColumn fx:id="dateTableColumn" prefWidth="113.0" text="Date" />
+            <TableColumn fx:id="timeTableColumn" prefWidth="105.0" text="Time" />
         </columns>
       </TableView>
       <DatePicker fx:id="datePicker" layoutX="992.0" layoutY="165.0" onAction="#getSelectedDate" />
