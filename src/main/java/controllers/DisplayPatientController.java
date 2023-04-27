@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import utils.AlertUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -151,7 +152,7 @@ public class DisplayPatientController extends Controller {
             alert.showAndWait();
             return;
         }
-        if(getConfirmation()){
+        if(AlertUtils.getConfirmation()){
             dbConnectPatient database = new dbConnectPatient();
 
             int id = patient.getId();
