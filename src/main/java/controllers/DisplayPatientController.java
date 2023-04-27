@@ -178,12 +178,17 @@ public class DisplayPatientController extends Controller {
                 symptomsTextArea.getText()
         );
         if(getConfirmation()) database.updatePatient(id, patient);
+        else{
+//            if the user does not want to save the modifications, reset everything to default
+            init();
+        }
         database.close();
     }
 
     @FXML
     void deletePatientClicked(ActionEvent event) throws IOException {
         if(getConfirmation()){
+            System.out.println("Clicked on yes (delete patient)");
             new dbConnectPatient().delete(patient.getId());
             new dbConnectAppointment().deleteByPatientID(patient.getId());
             Alert alert =

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -52,7 +53,7 @@ public class AddDoctorController extends Controller implements Initializable {
     }
 
     @FXML
-    void submit(ActionEvent event) {
+    void submit(ActionEvent event) throws IOException {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         LocalDate dateOfBirth = dateOfBirthPicker.getValue();
@@ -98,6 +99,15 @@ public class AddDoctorController extends Controller implements Initializable {
             );
             database.addDoctorToDB(doctor);
             database.close();
+
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.CONFIRMATION,
+                            "Doctor successfully created.",
+                            ButtonType.OK
+                    );
+            alert.showAndWait();
+            switchToDoctor(event);
         }
     }
 }
