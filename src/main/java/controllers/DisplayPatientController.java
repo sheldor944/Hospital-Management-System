@@ -119,27 +119,6 @@ public class DisplayPatientController extends Controller {
         }
     }
 
-    private boolean getConfirmation(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Are you sure you want to proceed?");
-        alert.setContentText("This action cannot be undone.");
-
-        ButtonType buttonTypeYes = new ButtonType("Yes");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel");
-
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
-
-        // show the alert and wait for the user's response
-        alert.showAndWait().ifPresent(response -> {
-            if (response == buttonTypeYes) {
-                hasDecidedToPoceed = true;
-            }
-        });
-
-        return hasDecidedToPoceed;
-    }
-
     @FXML
     void modifyButtonClicked(ActionEvent event) {
         if (firstName.getText().isEmpty()
@@ -190,7 +169,7 @@ public class DisplayPatientController extends Controller {
 
     @FXML
     void deletePatientClicked(ActionEvent event) throws IOException {
-        if(getConfirmation()){
+        if(AlertUtils.getConfirmation()){
             System.out.println("Clicked on yes (delete patient)");
             new dbConnectPatient().delete(patient.getId());
             new dbConnectAppointment().deleteByPatientID(patient.getId());
@@ -207,7 +186,7 @@ public class DisplayPatientController extends Controller {
 
     @FXML
     void rescheduleButtonClicked(ActionEvent event) throws IOException {
-        if(getConfirmation()) {
+        if(AlertUtils.getConfirmation()) {
             dbConnectAppointment database = new dbConnectAppointment();
             database.deleteByPatientID(patient.getId());
 
