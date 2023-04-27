@@ -1,5 +1,7 @@
 package controllers;
 
+import database.dbConnectLoginInfo;
+import datamodel.LoginInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,18 +32,25 @@ public class MenuController extends Controller implements Initializable {
     @FXML
     private Button patientButton;
 
-    public void foo(){
-        System.out.println("hello");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        welcomeLabel.setText("Welcome " + username);
-        welcomeLabel.setText("Welcome admin");
+        LoginInfo loginInfo =
+                new dbConnectLoginInfo().getLoginInfo();
+        String username = loginInfo.getUsername();
+        String welcomeText = "Welcome " + username + "!";
+        welcomeLabel.setText(welcomeText);
     }
 
     public void logout(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void switchToUpdateLoginInfo(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/UpdateLoginInfo.fxml"));
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

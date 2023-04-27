@@ -9,4 +9,6 @@ module com.example.hospitalmanagementsystem_firstevaluation {
 
     exports controllers;
     exports datamodel;
+    exports utils;
+    opens utils to javafx.fxml;
 }

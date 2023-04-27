@@ -32,5 +32,6 @@
             <Font size="42.0" />
          </font>
       </Button>
+      <Button layoutX="49.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToUpdateLoginInfo" prefHeight="64.0" prefWidth="134.0" text="Update Login Info" />
    </children>
 </AnchorPane>
