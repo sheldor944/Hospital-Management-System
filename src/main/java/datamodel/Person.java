@@ -100,4 +100,8 @@ abstract public class Person {
                 + " (" + id + ")\n"
                 + "DOB: " + dateOfBirth;
     }
+
+    public String getName(){
+        return firstName + " " + lastName;
+    }
 }

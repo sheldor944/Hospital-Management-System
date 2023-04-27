@@ -1,7 +1,9 @@
 package controllers;
 
 import database.dbConnectAppointment;
+import database.dbConnectDoctor;
 import datamodel.Appointment;
+import datamodel.Doctor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -77,33 +79,32 @@ public class SearchAppointment implements Initializable {
             doctorNameTableColumn.setCellValueFactory(new DerivedValueCallback("doctorName"));
             dateTableColumn.setCellValueFactory(new DerivedValueCallback("date"));
             timeTableColumn.setCellValueFactory(new DerivedValueCallback("time"));
-//            departmentTableColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
 
             System.out.println("Setting items on the table...");
             appointmentTableView.setItems(appointmentModelObservableList);
+
+            FilteredList<Appointment> appointmentFilteredList = new FilteredList<>(appointmentModelObservableList, b -> true);
+            searchBarTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                appointmentFilteredList.setPredicate(appointment -> {
+                    if (newValue == null || newValue.isBlank() || newValue.isEmpty()) {
+                        return true;
+                    }
+
+                    String comparingTo =
+                            new dbConnectDoctor().getDoctorByID(appointment.getDoctorID()).getName();
+
+                    String searchKeyword = newValue.toLowerCase();
+                    if (comparingTo.toLowerCase().contains(searchKeyword)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            });
 //
-//            FilteredList<Appointment> appointmentFilteredList = new FilteredList<>(appointmentModelObservableList, b -> true);
-//            searchBarTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-//                appointmentFilteredList.setPredicate(appointment -> {
-//                    if (newValue == null || newValue.isBlank() || newValue.isEmpty()) {
-//                        return true;
-//                    }
-//                    String searchKeyword = newValue.toLowerCase();
-//                    if (appointment.getPatientName().toLowerCase().contains(searchKeyword)) {
-//                        return true;
-//                    } else if (appointment.getDoctorName().toLowerCase().contains(searchKeyword)) {
-//                        return true;
-//                    } else if (appointment.getDepartment().toLowerCase().contains(searchKeyword)) {
-//                        return true;
-//                    } else {
-//                        return false;
-//                    }
-//                });
-//            });
-//
-//            SortedList<appointmentModel> sortedList = new SortedList<>(appointmentFilteredList);
-//            sortedList.comparatorProperty().bind(appointmentTableView.comparatorProperty());
-//            appointmentTableView.setItems(sortedList);
+            SortedList<Appointment> sortedList = new SortedList<>(appointmentFilteredList);
+            sortedList.comparatorProperty().bind(appointmentTableView.comparatorProperty());
+            appointmentTableView.setItems(sortedList);
 //
 //            appointmentTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 //                if (newSelection != null) {
