@@ -206,16 +206,18 @@ public class DisplayPatientController extends Controller {
 
     @FXML
     void rescheduleButtonClicked(ActionEvent event) throws IOException {
-        dbConnectAppointment database = new dbConnectAppointment();
-        database.deleteByPatientID(patient.getId());
+        if(getConfirmation()) {
+            dbConnectAppointment database = new dbConnectAppointment();
+            database.deleteByPatientID(patient.getId());
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/NewAppointment.fxml"));
-        root = fxmlLoader.load();
-        addAppointment controller = fxmlLoader.getController();
-        controller.setPatient(patient);
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/NewAppointment.fxml"));
+            root = fxmlLoader.load();
+            addAppointment controller = fxmlLoader.getController();
+            controller.setPatient(patient);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 }
