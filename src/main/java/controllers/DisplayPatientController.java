@@ -84,6 +84,7 @@ public class DisplayPatientController extends Controller {
     public void init() {
         modifyButton.requestFocus();
 
+        System.out.println("Initializing the fields in Display Patient...");
         firstName.setText(patient.getFirstName());
         lastName.setText(patient.getLastName());
         dateOfBirth.setValue(patient.getDateOfBirth());
@@ -150,39 +151,40 @@ public class DisplayPatientController extends Controller {
             alert.showAndWait();
             return;
         }
-        dbConnectPatient database = new dbConnectPatient();
+        if(getConfirmation()){
+            dbConnectPatient database = new dbConnectPatient();
 
-        int id = patient.getId();
+            int id = patient.getId();
+            String gender;
+            if (rMaleButton.isSelected()) {
+                gender = "MALE";
+            } else if (rFemaleButton.isSelected()) {
+                gender = "FEMALE";
+            } else {
+                gender = "OTHER";
+            }
+            int age = Integer.parseInt(patientAge.getText());
+            LocalDate localDate = dateOfBirth.getValue();
 
-        String gender;
-        if(rMaleButton.isSelected()){
-            gender = "MALE";
-        }
-        else if ( rFemaleButton.isSelected()){
-            gender = "FEMALE";
+            patient = new Patient(
+                    id,
+                    firstName.getText(),
+                    lastName.getText(),
+                    localDate,
+                    age,
+                    gender,
+                    patientMobile.getText(),
+                    symptomsTextArea.getText()
+            );
+
+            database.updatePatient(id, patient);
+            database.close();
         }
         else{
-            gender = "OTHER" ;
-        }
-        int age = Integer.parseInt(patientAge.getText());
-        LocalDate localDate = dateOfBirth.getValue();
-
-        patient = new Patient(
-                id,
-                firstName.getText(),
-                lastName.getText(),
-                localDate,
-                age,
-                gender,
-                patientMobile.getText(),
-                symptomsTextArea.getText()
-        );
-        if(getConfirmation()) database.updatePatient(id, patient);
-        else{
-//            if the user does not want to save the modifications, reset everything to default
+//            restore patient details if modifications are discarded
+            System.out.println("Cancel (modifying patient) button was clicked");
             init();
         }
-        database.close();
     }
 
     @FXML
