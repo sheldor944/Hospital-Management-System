@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e9a20b7-5cf3-469d-9cd2-ebae4e15934b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/UpdateLoginInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/database/dbConnectLoginInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/datamodel/LoginInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/UpdateLoginInfo.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datamodel/Authorizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Authorizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DisplayDoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DisplayDoctorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DisplayPatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DisplayPatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/AlertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/AlertUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/menu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,19 +53,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "/home/tahsin/IdeaProjects/Hospital-Management-System (copy)",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tahsin/IdeaProjects/Hospital-Management-System (copy)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/database" />

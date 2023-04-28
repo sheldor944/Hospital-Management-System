@@ -6,13 +6,10 @@ import datamodel.Doctor;
 import datamodel.Hospital;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import utils.AlertUtils;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class DisplayDoctorController extends Controller {
@@ -121,11 +118,13 @@ public class DisplayDoctorController extends Controller {
             );
             database.updateDoctor(doctor.getId(), updatedDoctor);
             database.close();
+
+            AlertUtils.showAlert("The information has been updated.");
         }
     }
 
     @FXML
-    void deleteDoctorClicked(ActionEvent event) {
+    void deleteDoctorClicked(ActionEvent event) throws IOException {
         if(!AlertUtils.getConfirmation()) {
             System.out.println("Cancelling doctor delete...");
             return;
@@ -140,5 +139,8 @@ public class DisplayDoctorController extends Controller {
                 .delete(
                         doctor.getId()
                 );
+
+        AlertUtils.showAlert("The doctor has been successfully deleted.");
+        switchToDoctor(event);
     }
 }

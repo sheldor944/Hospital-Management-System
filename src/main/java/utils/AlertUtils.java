@@ -29,4 +29,12 @@ public class AlertUtils {
         return hasDecidedToProceed;
     }
 
+    public static void showAlert(String message) {
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                message,
+                ButtonType.OK
+        );
+        alert.showAndWait();
+    }
 }

@@ -127,8 +127,7 @@ public class DisplayPatientController extends Controller {
                 || patientAge.getText().isEmpty()
                 || patientMobile.getText().isEmpty()
                 || Gender.getSelectedToggle() == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all required fields.", ButtonType.OK);
-            alert.showAndWait();
+            AlertUtils.showAlert("Please fill in all required fields.");
             return;
         }
         if(AlertUtils.getConfirmation()){
@@ -159,6 +158,8 @@ public class DisplayPatientController extends Controller {
 
             database.updatePatient(id, patient);
             database.close();
+
+            AlertUtils.showAlert("The information has been updated.");
         }
         else{
 //            restore patient details if modifications are discarded
@@ -173,13 +174,7 @@ public class DisplayPatientController extends Controller {
             System.out.println("Clicked on yes (delete patient)");
             new dbConnectPatient().delete(patient.getId());
             new dbConnectAppointment().deleteByPatientID(patient.getId());
-            Alert alert =
-                    new Alert(
-                            Alert.AlertType.CONFIRMATION,
-                            "Patient successfully deleted.",
-                            ButtonType.OK
-                    );
-            alert.showAndWait();
+            AlertUtils.showAlert("The patient was successfully deleted.");
             switchToPatient(event);
         }
     }
