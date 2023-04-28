@@ -6,19 +6,30 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #076EFB;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorSearchController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-image: url('hello1.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorSearchController">
    <children>
-      <TableView fx:id="doctorTableView" layoutX="42.0" layoutY="68.0" prefHeight="566.0" prefWidth="1141.0" style="-fx-background-color: azure;">
+      <TableView fx:id="doctorTableView" layoutX="42.0" layoutY="68.0" prefHeight="566.0" prefWidth="858.0" style="-fx-background-color: azure;">
         <columns>
             <TableColumn fx:id="idTableColumn" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="firstNameTableColumn" prefWidth="398.0" text="FIRST NAME" />
-            <TableColumn fx:id="lastNameTableColumn" prefWidth="468.0" text="LAST NAME" />
-          <TableColumn fx:id="departmentTableColumn" prefWidth="199.0" text="DEPARTMENT" />
+          <TableColumn fx:id="firstNameTableColumn" prefWidth="234.31588745117188" text="FIRST NAME" />
+            <TableColumn fx:id="lastNameTableColumn" prefWidth="270.17193603515625" text="LAST NAME" />
+          <TableColumn fx:id="departmentTableColumn" prefWidth="237.0777587890625" text="DEPARTMENT" />
         </columns>
       </TableView>
-      <Label layoutX="42.0" layoutY="31.0" text="Search" />
-      <TextField fx:id="searchBarTextField" layoutX="93.0" layoutY="27.0" prefHeight="25.0" prefWidth="1002.0" />
+      <Label layoutX="42.0" layoutY="31.0" text="Search" textFill="WHITE" />
+      <TextField fx:id="searchBarTextField" layoutX="93.0" layoutY="27.0" prefHeight="25.0" prefWidth="804.0" style="-fx-background-color: azure;" />
       <Button layoutX="1187.0" layoutY="18.0" mnemonicParsing="false" onAction="#returnToDoctorPage" text="Return" />
+      <Label layoutX="1037.0" layoutY="121.0" text="Total Doctors" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalDoctors" contentDisplay="CENTER" layoutX="1049.0" layoutY="161.0" prefHeight="46.0" prefWidth="85.0" text="00" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -47,6 +47,8 @@ public class DoctorSearchController extends Controller implements Initializable 
 
     @FXML
     private TextField searchBarTextField;
+    @FXML
+    private Label totalDoctors;
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
@@ -68,6 +70,8 @@ public class DoctorSearchController extends Controller implements Initializable 
             departmentTableColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
 
             doctorTableView.setItems(doctorObservableList);
+            totalDoctors.setText(String.valueOf(doctorObservableList.size()));
+
 
             FilteredList<Doctor> doctorFilteredList = new FilteredList<>(doctorObservableList , b -> true ) ;
             searchBarTextField.textProperty().addListener((observable , oldValue , newValue) -> {

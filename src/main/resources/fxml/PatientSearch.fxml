@@ -6,19 +6,30 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #076EFB;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientSeachController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-image: url('hello1.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientSeachController">
    <children>
       <Label layoutX="112.0" layoutY="60.0" text="Search" />
-      <TableView fx:id="patientTableView" layoutX="100.0" layoutY="114.0" prefHeight="474.0" prefWidth="1050.0" style="-fx-background-color: azure;">
+      <TableView fx:id="patientTableView" layoutX="100.0" layoutY="114.0" prefHeight="474.0" prefWidth="905.0" style="-fx-background-color: azure;">
         <columns>
-          <TableColumn fx:id="patientIdTableColumn" prefWidth="87.0" text="ID" />
-          <TableColumn fx:id="firstNameTableColumn" prefWidth="391.0" text="FIRST NAME" />
-            <TableColumn fx:id="lastNameTableColumn" prefWidth="355.0" text="LAST NAME" />
-            <TableColumn fx:id="ageTableColumn" prefWidth="216.0" text="AGE" />
+          <TableColumn fx:id="patientIdTableColumn" prefWidth="86.9999771118164" text="ID" />
+          <TableColumn fx:id="firstNameTableColumn" prefWidth="325.0" text="FIRST NAME" />
+            <TableColumn fx:id="lastNameTableColumn" prefWidth="307.3147277832031" text="LAST NAME" />
+            <TableColumn fx:id="ageTableColumn" prefWidth="186.565185546875" text="AGE" />
         </columns>
       </TableView>
-      <TextField fx:id="searchBarTextField" layoutX="227.0" layoutY="56.0" prefHeight="25.0" prefWidth="866.0" style="-fx-background-color: azure;" />
+      <TextField fx:id="searchBarTextField" layoutX="177.0" layoutY="56.0" prefHeight="25.0" prefWidth="822.0" style="-fx-background-color: azure;" />
       <Button layoutX="1205.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnToPatientPage" text="Return" />
+      <Label layoutX="1112.0" layoutY="138.0" text="Total Patients">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPatients" alignment="CENTER" layoutX="1120.0" layoutY="170.0" prefHeight="72.0" prefWidth="95.0" text="00">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

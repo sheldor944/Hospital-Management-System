@@ -42,6 +42,9 @@ public class PatientSeachController extends Controller implements Initializable 
     private TableColumn<Patient , Integer> ageTableColumn ;
     @FXML
     private TextField searchBarTextField ;
+    @FXML
+    private Label totalPatients;
+
     ObservableList<Patient> patientObservableList;
     @Override
     public void initialize(URL url , ResourceBundle resourceBundle)
@@ -78,6 +81,7 @@ public class PatientSeachController extends Controller implements Initializable 
             });
 
             patientTableView.setItems(patientObservableList);
+            totalPatients.setText(String.valueOf(patientObservableList.size()));
 
             FilteredList<Patient> patientFilteredList =
                     new FilteredList<>(patientObservableList , b -> true);

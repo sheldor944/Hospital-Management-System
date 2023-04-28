@@ -4,24 +4,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #076EFB;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-image: url('hello1.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientController">
    <children>
-      <Button layoutX="112.0" layoutY="216.0" mnemonicParsing="false" onAction="#addPatient" prefHeight="182.0" prefWidth="280.0" text="ADD PATIENT">
+      <Button alignment="BOTTOM_CENTER" layoutX="196.0" layoutY="94.0" mnemonicParsing="false" onAction="#addPatient" prefHeight="182.0" prefWidth="280.0" style="-fx-background-image:url('addPatientButton.jpg'); -fx-background-size: cover;" text="ADD PATIENT">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Button>
-      <Button layoutX="452.0" layoutY="214.0" mnemonicParsing="false" onAction="#modifyPatient" prefHeight="182.0" prefWidth="280.0" text="MODIFY PATIENT">
+      <Button alignment="BOTTOM_CENTER" layoutX="194.0" layoutY="401.0" mnemonicParsing="false" onAction="#searchPatient" prefHeight="182.0" prefWidth="280.0" style="-fx-background-image:url('searchPatientButton.jpg'); -fx-background-size: cover;" text="SEARCH PATIENT">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Button>
-      <Button layoutX="804.0" layoutY="212.0" mnemonicParsing="false" onAction="#searchPatient" prefHeight="182.0" prefWidth="280.0" text="SEARCH PATIENT">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="1122.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="62.0" prefWidth="144.0" text="Return">
+      <Button layoutX="1122.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="62.0" prefWidth="144.0"  text="Return">
          <font>
             <Font size="20.0" />
          </font>
