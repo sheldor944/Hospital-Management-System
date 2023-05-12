@@ -70,17 +70,17 @@ public class SearchAppointment implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            System.out.println("Connecting to Appointment Table...");
+//            System.out.println("Connecting to Appointment Table...");
             dbConnectAppointment database = new dbConnectAppointment();
             appointmentModelObservableList = database.getAllAppointments();
 
-            System.out.println("Setting table columns...");
+//            System.out.println("Setting table columns...");
             patientNameTableColumn.setCellValueFactory(new DerivedValueCallback("patientName"));
             doctorNameTableColumn.setCellValueFactory(new DerivedValueCallback("doctorName"));
             dateTableColumn.setCellValueFactory(new DerivedValueCallback("date"));
             timeTableColumn.setCellValueFactory(new DerivedValueCallback("time"));
 
-            System.out.println("Setting items on the table...");
+//            System.out.println("Setting items on the table...");
             appointmentTableView.setItems(appointmentModelObservableList);
 
             FilteredList<Appointment> appointmentFilteredList = new FilteredList<>(appointmentModelObservableList, b -> true);

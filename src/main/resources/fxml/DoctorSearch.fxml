@@ -18,15 +18,15 @@
           <TableColumn fx:id="departmentTableColumn" prefWidth="237.0777587890625" text="DEPARTMENT" />
         </columns>
       </TableView>
-      <Label layoutX="42.0" layoutY="31.0" text="Search" textFill="WHITE" />
+      <Label layoutX="42.0" layoutY="31.0" text="Search" />
       <TextField fx:id="searchBarTextField" layoutX="93.0" layoutY="27.0" prefHeight="25.0" prefWidth="804.0" style="-fx-background-color: azure;" />
       <Button layoutX="1187.0" layoutY="18.0" mnemonicParsing="false" onAction="#returnToDoctorPage" text="Return" />
-      <Label layoutX="1037.0" layoutY="121.0" text="Total Doctors" textFill="WHITE">
+      <Label layoutX="1037.0" layoutY="121.0" text="Total Doctors">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="totalDoctors" contentDisplay="CENTER" layoutX="1049.0" layoutY="161.0" prefHeight="46.0" prefWidth="85.0" text="00" textFill="WHITE">
+      <Label fx:id="totalDoctors" contentDisplay="CENTER" layoutX="1049.0" layoutY="161.0" prefHeight="46.0" prefWidth="85.0" text="00">
          <font>
             <Font size="24.0" />
          </font>

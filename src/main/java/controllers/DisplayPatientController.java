@@ -85,7 +85,7 @@ public class DisplayPatientController extends Controller {
     public void init() {
         modifyButton.requestFocus();
 
-        System.out.println("Initializing the fields in Display Patient...");
+//        System.out.println("Initializing the fields in Display Patient...");
         firstName.setText(patient.getFirstName());
         lastName.setText(patient.getLastName());
         dateOfBirth.setValue(patient.getDateOfBirth());
@@ -163,7 +163,7 @@ public class DisplayPatientController extends Controller {
         }
         else{
 //            restore patient details if modifications are discarded
-            System.out.println("Cancel (modifying patient) button was clicked");
+//            System.out.println("Cancel (modifying patient) button was clicked");
             init();
         }
     }
@@ -171,7 +171,7 @@ public class DisplayPatientController extends Controller {
     @FXML
     void deletePatientClicked(ActionEvent event) throws IOException {
         if(AlertUtils.getConfirmation()){
-            System.out.println("Clicked on yes (delete patient)");
+//            System.out.println("Clicked on yes (delete patient)");
             new dbConnectPatient().delete(patient.getId());
             new dbConnectAppointment().deleteByPatientID(patient.getId());
             AlertUtils.showAlert("The patient was successfully deleted.");

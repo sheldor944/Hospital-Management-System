@@ -94,7 +94,7 @@ public class DisplayDoctorController extends Controller {
         }
         else{
             if(!AlertUtils.getConfirmation()) {
-                System.out.println("Cancelling doctor modification...");
+//                System.out.println("Cancelling doctor modification...");
                 init();
                 return;
             }
@@ -126,11 +126,11 @@ public class DisplayDoctorController extends Controller {
     @FXML
     void deleteDoctorClicked(ActionEvent event) throws IOException {
         if(!AlertUtils.getConfirmation()) {
-            System.out.println("Cancelling doctor delete...");
+//            System.out.println("Cancelling doctor delete...");
             return;
         }
 
-        System.out.println("Deleting doctor with ID: " + doctor.getId());
+//        System.out.println("Deleting doctor with ID: " + doctor.getId());
         new dbConnectAppointment()
                 .deleteByDoctorID(
                         doctor.getId()

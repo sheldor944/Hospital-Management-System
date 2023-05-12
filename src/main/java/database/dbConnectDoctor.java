@@ -113,7 +113,7 @@ public class dbConnectDoctor extends dbConnect{
                         resultSet.getString("DESCRIPTION")
                 );
                 arrayList.add(doctor);
-                System.out.println(doctor.getFirstName() + " " + doctor.getDateOfBirth());
+//                System.out.println(doctor.getFirstName() + " " + doctor.getDateOfBirth());
             }
         } catch (SQLException e) {
             System.out.println(e);
