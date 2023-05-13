@@ -70,17 +70,17 @@ public class SearchAppointment implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-//            System.out.println("Connecting to Appointment Table...");
+            System.out.println("Connecting to Appointment Table...");
             dbConnectAppointment database = new dbConnectAppointment();
             appointmentModelObservableList = database.getAllAppointments();
 
-//            System.out.println("Setting table columns...");
+            System.out.println("Setting table columns...");
             patientNameTableColumn.setCellValueFactory(new DerivedValueCallback("patientName"));
             doctorNameTableColumn.setCellValueFactory(new DerivedValueCallback("doctorName"));
             dateTableColumn.setCellValueFactory(new DerivedValueCallback("date"));
             timeTableColumn.setCellValueFactory(new DerivedValueCallback("time"));
 
-//            System.out.println("Setting items on the table...");
+            System.out.println("Setting items on the table...");
             appointmentTableView.setItems(appointmentModelObservableList);
 
             FilteredList<Appointment> appointmentFilteredList = new FilteredList<>(appointmentModelObservableList, b -> true);
@@ -105,93 +105,10 @@ public class SearchAppointment implements Initializable {
             SortedList<Appointment> sortedList = new SortedList<>(appointmentFilteredList);
             sortedList.comparatorProperty().bind(appointmentTableView.comparatorProperty());
             appointmentTableView.setItems(sortedList);
-//
-//            appointmentTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-//                if (newSelection != null) {
-//                     patientId = newSelection.getPatientId();
-//                     doctorId = newSelection.getDoctorId();
-//                     patientName = newSelection.getPatientName();
-//                     doctorName = newSelection.getDoctorName();
-//                     time = newSelection.getTime();
-//                     department = newSelection.getDepartment();
-//                    // do something with the selected item's information
-//                    System.out.println(patientId);
-//
-//                }
-//            });
-//
-//            // works fine
-//
-//            departmentPicker.getItems().addAll(departments);
-//            LocalDate minDate = LocalDate.now();
-//            LocalDate maxDate = minDate.plusDays(5);
-//            datePicker.setDayCellFactory(picker -> new DateCell() {
-//                @Override
-//                public void updateItem(LocalDate date, boolean empty) {
-//                    super.updateItem(date, empty);
-//                    setDisable(date.isBefore(minDate) || date.isAfter(maxDate));
-//                }
-//            });
-//            departmentPicker.setDisable(true); // Disable the departmentPicker initially
-//            timePicker.setDisable(true); // Disable the timePicker initially
-//            datePicker.valueProperty().addListener((observable , oldValue , newValue ) ->
-//            {
-//                if (newValue != null) {
-//                    // If a date is selected, enable the departmentPicker and disable the timePicker
-//                    departmentPicker.setDisable(false);
-//                    timePicker.setDisable(true);
-//                } else {
-//                    // If no date is selected, disable both the departmentPicker and the timePicker
-//                    departmentPicker.setDisable(true);
-//                    timePicker.setDisable(true);
-//                }
-//            });
-//            departmentPicker.getSelectionModel().selectedItemProperty().addListener((observable , oldValue , newValue ) ->
-//            {
-//                if (newValue != null) {
-//                    // If a department is selected, enable the timePicker
-//                    timePicker.setDisable(false);
-//                    selectedDept = newValue ;
-//
-//                    times = dbapp.searchForAppointment(selectedDate,newValue , times);
-//                    timePicker.getItems().addAll(times);
-//                } else {
-//                    // If no department is selected, disable the timePicker
-//                    timePicker.setDisable(true);
-//                }
-//            });
         }
         catch (Exception e )
         {
             System.out.println(e);
-        }
-    }
-    public void confirm(ActionEvent event)
-    {
-//        if (appointmentTableView.getSelectionModel().getSelectedItem() != null) {
-//            dbapp.editAppointment(patientId, doctorId ,department  , time , doctorName , patientName , timePicker.getValue() , departmentPicker.getValue(), type);
-//
-//        } else {
-//            // Nothing is selected, do something else
-//        }
-
-    }
-    public Date getSelectedDate(ActionEvent event)
-    {
-//        LocalDate localDate = datePicker.getValue();
-//        Date date = Date.valueOf(localDate);
-//        selectedDate = date ;
-//        return date ;
-        return new Date(23);
-    }
-    public void getDecision(ActionEvent event)
-    {
-        if(rButtonEdit.isSelected())
-        {
-            type = 1 ;
-        }
-        else{
-            type = 2 ;
         }
     }
     public void switchToMenu(ActionEvent event) throws IOException
